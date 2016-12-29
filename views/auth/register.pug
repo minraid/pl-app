@@ -1,0 +1,39 @@
+.register
+	h1 Registration procedure
+	popup([message]="message", *ngIf="showPopup")
+	form(#regForm="ngForm", (ngSubmit)="register()")
+		.input-group.cf
+			label.fl First Name*
+			input.fl(type="text", [(ngModel)]="user.firstName", ngControl="firstName", required)
+		.input-group.cf
+			label.fl Last Name*
+			input.fl(type="text", [(ngModel)]="user.lastName", ngControl="lastName", required)
+		.input-group.cf.nick
+			label.fl Nick Name*
+			input.fl(type="text", [(ngModel)]="user.nickname", ngControl="nickname", required)
+			button.check.fl(type="button", (click)="checkNick()") Check
+			.message.error.fl(*ngIf="nickRes===0") Sorry, please try another nick name.
+			.message.success.fl(*ngIf="nickRes===1") Ok!
+		.input-group.cf
+			label.fl Email*
+			input.fl(type="email", [(ngModel)]="user.email", ngControl="email", required)
+		.input-group.cf
+			label.fl Country*
+			select.fl([(ngModel)]="user.country", ngControl="country", required)
+				option(*ngFor="let country of countries", [value]="country") {{country}}
+		.input-group.cf
+			label.fl Skype
+			input.fl(type="text", [(ngModel)]="user.skype", ngControl="skype")
+		.input-group.cf
+			label.fl ICQ
+			input.fl(type="text", [(ngModel)]="user.icq", ngControl="icq")
+		.input-group.cf
+			label.fl Jabber
+			input.fl(type="text", [(ngModel)]="user.jabber", ngControl="jabber")
+		.input-group.cf
+			.hint.fl *- Marked fields are required.
+			button.register.fl(type="submit", [disabled]="!regForm.form.valid || nickRes!==1") Registrate
+		.input-group
+			.links
+				| Already have an account? 
+				a([routerLink]="['Login']") Login!

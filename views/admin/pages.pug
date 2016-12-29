@@ -1,0 +1,15 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span Text pages
+	.content
+		h1 Text pages
+		.pages
+			.cf
+				button.fr([routerLink]="['NewPage']") Create Page
+			.page(*ngFor="let page of pages")
+				.cf
+					a.fl([routerLink]="['Page', {id:page._id}]")
+						h2 {{page.title}}
+					button.fr((click)="delete(page)") Delete
+				p([innerHTML]="page.content| sanitize")

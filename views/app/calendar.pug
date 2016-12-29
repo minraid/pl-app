@@ -1,0 +1,17 @@
+.cal-input((click)="open=!open") {{date| date:'dd/MM/y'}}
+.calendar-backdrop(*ngIf="open", (click)="open=!open")
+.calendar(*ngIf="open")
+	.heading.cf
+		.arrow.left.fl((click)="prev()")
+		.arrow.right.fr((click)="next()")
+		.month {{date| date:'MMMM y'}}
+	tr
+		th Sun
+		th Mon
+		th Tue
+		th Wed
+		th Thu
+		th Fri
+		th Sat
+	tr(*ngFor="let week of dates")
+		td(*ngFor="let day of week", (click)="select(day)") {{day!==0 ? day : ''}}

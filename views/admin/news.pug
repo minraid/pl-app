@@ -1,0 +1,15 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span News
+	.content
+		h1 News
+		.pages
+			.cf
+				button.add.fr([routerLink]="['NewPost']") Create News
+			.page(*ngFor="let post of news")
+				.cf
+					a.fl([routerLink]="['Post', {id:post._id}]")
+						h2 {{post.title}}
+					button.fr((click)="delete(post)") Delete
+				p([innerHTML]="post.content| sanitize")

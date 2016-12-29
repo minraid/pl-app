@@ -1,0 +1,70 @@
+
+<div class="container content">
+  <div class="breadcrumbs"><a href="">Home</a><span>Reports</span></div>
+  <finance></finance>
+  <div class="content">
+    <h1>Reports</h1>
+    <div class="report cf">
+      <div class="dropdown fl">
+        <label>Report period</label>
+      </div>
+      <div class="radio-block fl">
+        <div class="input-group">
+          <input type="radio" id="today" value="today" name="period" (click)="selectPeriod('today')" [checked]="period==='today'"/>
+          <label for="today">Today</label>
+        </div>
+        <div class="input-group">
+          <input type="radio" id="yesterday" value="yesterday" name="period" (click)="selectPeriod('yesterday')" [checked]="period==='yesterday'"/>
+          <label for="yesterday">Yesterday</label>
+        </div>
+      </div>
+      <div class="radio-block fl">
+        <div class="input-group">
+          <input type="radio" id="week" value="week" name="period" (click)="selectPeriod('week')" [checked]="period==='week'"/>
+          <label for="week">Last week</label>
+        </div>
+        <div class="input-group">
+          <input type="radio" id="period" value="period" name="period" (click)="selectPeriod('period')" [checked]="period==='period'"/>
+          <label for="period">Period</label>
+        </div>
+      </div>
+      <div class="calendar fl ml">
+        <label class="fl" for="">From</label>
+        <!-- <calendar class="fl" (onSelect)="select($event, 'from')" [date]="from"></calendar> -->
+      </div>
+      <div class="calendar fl">
+        <label class="fl" for="">To</label>
+        <!-- <calendar class="fl" (onSelect)="select($event, 'to')" [date]="to"></calendar> -->
+      </div>
+      <button class="fl" (click)="generate()">Generate report</button>
+    </div>
+    <table class="report-table">
+      <tr>
+        <th (click)="sort('id')" [ngClass]="{'down' : sorting==='id', 'up' : sorting==='-id'}">Order ID</th>
+        <th (click)="sort('date')" [ngClass]="{'down' : sorting==='date', 'up' : sorting==='-date'}">Order date</th>
+        <th (click)="sort('customer')" [ngClass]="{'down' : sorting==='customer', 'up' : sorting==='-customer'}">Customer</th>
+        <th (click)="sort('country')" [ngClass]="{'down' : sorting==='country', 'up' : sorting==='-country'}">Country</th>
+        <th (click)="sort('amount')" [ngClass]="{'down' : sorting==='amount', 'up' : sorting==='-amount'}">Total amount</th>
+        <th (click)="sort('shipmentDate')" [ngClass]="{'down' : sorting==='shipmentDate', 'up' : sorting==='-shipmentDate'}">Shipment date</th>
+        <th (click)="sort('tracking')" [ngClass]="{'down' : sorting==='tracking', 'up' : sorting==='-tracking'}">Tracking</th>
+        <th (click)="sort('return')" [ngClass]="{'down' : sorting==='return', 'up' : sorting==='-return'}">Return</th>
+        <th (click)="sort('returnDate')" [ngClass]="{'down' : sorting==='returnDate', 'up' : sorting==='-returnDate'}">Return date</th>
+        <th (click)="sort('returnCost')" [ngClass]="{'down' : sorting==='returnCost', 'up' : sorting==='-returnCost'}">Cost of return</th>
+        <th (click)="sort('overweightCost')" [ngClass]="{'down' : sorting==='overweightCost', 'up' : sorting==='-overweightCost'}">Overweight</th>
+      </tr>
+      <tr class="cursor" *ngFor="let order of orders" [ngClass]="order.status" [routerLink]="['Order', {id:order._id}]">
+        <td>{{order._id}}</td>
+        <td>{{order.date| date:'dd/MM/y'}}</td>
+        <td>{{order.customer ? order.customer.lastName : ''}}</td>
+        <td>{{order.address ? order.address.country : ''}}</td>
+        <td>{{order.amount ? '$' + (order.amount + (order.expressDelivery ? 50 : 25)) : ''}}</td>
+        <td>{{order.shipmentDate| date:'dd/MM/y'}}</td>
+        <td>{{order.tracking}}</td>
+        <td>{{order.return}}</td>
+        <td>{{order.returnDate| date:'dd/MM/y'}}</td>
+        <td>{{order.returnCost ? '$'+order.returnCost : ''}}</td>
+        <td>{{order.overweightCost ? '$'+order.overweightCost : '$0'}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

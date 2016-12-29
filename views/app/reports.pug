@@ -1,0 +1,56 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span Reports
+	finance
+	.content
+		h1 Reports
+		.report.cf
+			.dropdown.fl
+				label Report period
+			.radio-block.fl
+				.input-group
+					input(type="radio", id="today", value="today", name="period", (click)="selectPeriod('today')", [checked]="period==='today'")
+					label(for="today") Today
+				.input-group
+					input(type="radio", id="yesterday", value="yesterday", name="period", (click)="selectPeriod('yesterday')", [checked]="period==='yesterday'")
+					label(for="yesterday") Yesterday
+			.radio-block.fl
+				.input-group
+					input(type="radio", id="week", value="week", name="period", (click)="selectPeriod('week')", [checked]="period==='week'")
+					label(for="week") Last week
+				.input-group
+					input(type="radio", id="period", value="period", name="period", (click)="selectPeriod('period')", [checked]="period==='period'")
+					label(for="period") Period
+			.calendar.fl.ml
+				label.fl(for="") From
+				calendar.fl((onSelect)="select($event, 'from')", [date]="from")
+			.calendar.fl
+				label.fl(for="") To
+				calendar.fl((onSelect)="select($event, 'to')", [date]="to")
+			button.fl((click)="generate()") Generate report
+		table.report-table
+			tr
+				th((click)="sort('id')", [ngClass]="{'down' : sorting==='id', 'up' : sorting==='-id'}") Order ID
+				th((click)="sort('date')", [ngClass]="{'down' : sorting==='date', 'up' : sorting==='-date'}") Order date
+				th((click)="sort('customer')", [ngClass]="{'down' : sorting==='customer', 'up' : sorting==='-customer'}") Customer
+				th((click)="sort('country')", [ngClass]="{'down' : sorting==='country', 'up' : sorting==='-country'}") Country
+				th((click)="sort('amount')", [ngClass]="{'down' : sorting==='amount', 'up' : sorting==='-amount'}") Total amount
+				th((click)="sort('shipmentDate')", [ngClass]="{'down' : sorting==='shipmentDate', 'up' : sorting==='-shipmentDate'}") Shipment date
+				th((click)="sort('tracking')", [ngClass]="{'down' : sorting==='tracking', 'up' : sorting==='-tracking'}") Tracking
+				th((click)="sort('return')", [ngClass]="{'down' : sorting==='return', 'up' : sorting==='-return'}") Return
+				th((click)="sort('returnDate')", [ngClass]="{'down' : sorting==='returnDate', 'up' : sorting==='-returnDate'}") Return date
+				th((click)="sort('returnCost')", [ngClass]="{'down' : sorting==='returnCost', 'up' : sorting==='-returnCost'}") Cost of return
+				th((click)="sort('overweightCost')", [ngClass]="{'down' : sorting==='overweightCost', 'up' : sorting==='-overweightCost'}") Overweight
+			tr.cursor(*ngFor="let order of orders", [ngClass]="order.status", [routerLink]="['Order', {id:order._id}]")
+				td {{order._id}}
+				td {{order.date| date:'dd/MM/y'}}
+				td {{order.customer ? order.customer.lastName : ''}}
+				td {{order.address ? order.address.country : ''}}
+				td {{order.amount ? '$' + (order.amount + (order.expressDelivery ? 50 : 25)) : ''}}
+				td {{order.shipmentDate| date:'dd/MM/y'}}
+				td {{order.tracking}}
+				td {{order.return}}
+				td {{order.returnDate| date:'dd/MM/y'}}
+				td {{order.returnCost ? '$'+order.returnCost : ''}}
+				td {{order.overweightCost ? '$'+order.overweightCost : '$0'}}

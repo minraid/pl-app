@@ -1,0 +1,22 @@
+.finance.cf
+	h3.fl Finance
+	.col.fl
+		.key.fl Deposit: 
+		.value.fl ${{user.deposit}}
+		.key.fl Credit: 
+		.value.fl ${{user.credit}}
+		.key.fl Loan balance
+		.value.fl ${{user.loanBalance}}
+		.key.fl Status of credit line
+		.value.fl
+			span.yes(*ngIf="user.creditLine") YES
+			span.no(*ngIf="!user.creditLine") NO
+	.col.col-2.fl
+		.key.fl Period of collaboration:
+		.value.fl {{collaboration}} days
+		.key.fl Loan start date:
+		.value.fl {{user.loanStart}}
+		.key.fl Total number of orders:
+		.value.fl(*ngIf="user.orders") {{user.orders.length}}
+		.key.fl Total amount of orders:
+		.value.fl ${{amount}}

@@ -1,0 +1,9 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span FAQ
+	.content
+		h1 FAQ
+		.main.faq(*ngFor="let answer of answers", [ngClass]="{'active':active === answer._id}")
+			h2((click)="active = active === answer._id ? null : answer._id") {{answer.question}}
+			.text {{answer.response}}

@@ -1,0 +1,12 @@
+
+<div class="container content">
+  <div class="breadcrumbs"><a href="">Home</a><span>News</span></div>
+  <div class="content">
+    <h1>News</h1><a class="main news" *ngFor="let post of news" [routerLink]="['Post', {id:post._id}]">
+      <div class="cf">
+        <h2 class="fl">{{post.title}}</h2>
+        <div class="date fr">{{post.date| date:'dd/MM/y'}}</div>
+      </div>
+      <div class="text" [innerHTML]="post.content| sanitize"></div></a>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+	title PharmLogistics
+	meta(charset="UTF-8")
+	base(href="/")
+	link(rel="stylesheet", href="/style.css")
+	script(src="node_modules/core-js/client/shim.min.js")
+	script(src="node_modules/reflect-metadata/Reflect.js")
+	script(src="node_modules/zone.js/dist/zone.js")
+	script(src="node_modules/systemjs/dist/system.src.js")
+	script(src="/js/auth.config.js")
+	script.
+		System.import('app').catch(function(err){ console.error(err); });
+body
+	app

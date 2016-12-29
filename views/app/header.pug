@@ -1,0 +1,68 @@
+.top-line
+	.container.cf
+		a.logo.fl([routerLink]="['Main']")
+		.menu.fr
+			ul.fl
+				li
+					a([routerLink]="['Main']") Home
+				li
+					a([routerLink]="['Products']") Products
+					ul
+						li(*ngFor="let category of categories")
+							a([routerLink]="['Category', {id: category._id}]") {{category.name}}
+							ul
+								li(*ngFor="let product of category.products")
+									a([routerLink]="['Product', {id: product._id}]") {{product.name}}
+				li
+					a([routerLink]="['NewOrder']") Order
+				li
+					a([routerLink]="['Report']") Reports
+				li
+					a([routerLink]="['News']") News blog
+				li
+					a([routerLink]="['Faq']") FAQ
+				li
+					a([routerLink]="['Profile']") Profile
+				li
+					a([routerLink]="['Contact']") Contact
+				li
+					a([routerLink]="['Page', {page: 'manual'}]") Manual
+			.lang.fl
+				.arrow.fr
+				.eng.fl Eng
+.bottom-line
+	.container.cf
+		.calendar.fl {{date| date:'dd MMMM, yyyy'}}
+		.time.fl
+			| Server 
+			span {{date| date:'HH:mm:ss'}}
+		.time.fl
+			| USA (PST)
+			span {{pst| date:'HH:mm:ss'}}
+		.time.fl
+			| USA (EST)
+			span {{est| date:'HH:mm:ss'}}
+		.time.fl
+			| Europe (Gmt)
+			span {{gmt| date:'HH:mm:ss'}}
+		.finance.fl
+			.stats.fl
+				.dep
+					| Deposit: 
+					b ${{user.deposit}}
+				.cred
+					| Credit: 
+					b ${{user.credit}}
+			.credit.fl
+				| Status of credit line: 
+				div([ngClass]="{'yes' : user.creditLine, 'no' : !user.creditLine}") {{user.creditLine ? 'Yes' : 'No'}}
+		.charity.fl([routerLink]="['Page', {page: 'children'}]")
+			.text.fl Support of children deprived of care!
+			a.heart.fl(href="") Join us
+		.profile.fl
+			.block.fl
+				a((click)="logout()", href="#") Log out
+				.id My ID:
+			.block.fl
+				a([routerLink]="['Profile']") {{user.nickname}}
+				.id {{user._id}}

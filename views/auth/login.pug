@@ -1,0 +1,17 @@
+.register
+	h1 Login
+	form(#loginForm="ngForm", (ngSubmit)="login()")
+		.input-group.cf
+			label.fl Email
+			input.fl(type="email", [(ngModel)]="user.email", ngControl="email", required)
+		.input-group.cf
+			label.fl Password
+			input.fl(type="password", [(ngModel)]="user.password", ngControl="password", required)
+		.input-group
+			button.register(type="submit", [disabled]="!loginForm.form.valid") Login
+			.links
+				p
+					a([routerLink]="['Forgot']") Forgot password?
+				p
+					| Don`t have an account? 
+					a([routerLink]="['Register']") Register now!

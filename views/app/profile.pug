@@ -1,0 +1,40 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span Profile
+	finance
+	.content
+		h1 Profile
+		.main.profile
+			.input-group.cf
+				label.fl First Name
+				span.fl {{user.firstName}}
+			.input-group.cf
+				label.fl Last Name
+				span.fl {{user.lastName}}
+			.input-group.cf
+				label.fl Customer ID
+				span.fl 12596336
+			.input-group.cf
+				label.fl Nick Name
+				span.fl {{user.nickname}}
+			.input-group.cf
+				label.fl Country
+				span.fl {{user.country}}
+			.input-group.cf
+				label.fl Phone
+				span.fl {{user.phone}}
+			.input-group.cf
+				label.fl Date of registration
+				span.fl {{user.registerDate| date:'dd/MM/y'}}
+			.input-group.cf
+				label.fl Date of Birth
+				input.fl(type="text")
+			.input-group.cf
+				label.fl E-mail
+				input.fl(type="text")
+			.input-group.cf
+				label.fl IM
+				select
+			.input-group
+				button Save

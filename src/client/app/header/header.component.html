@@ -1,0 +1,47 @@
+<div class="top-line">
+  <div class="container cf"><a routerLink="/" class="logo fl"></a>
+    <div class="menu fr">
+      <ul class="fl">
+        <li><a routerLink="/">Home</a></li>
+        <li><a routerLink="/products">Products</a></li>
+        <li><a routerLink="/orders">Orders</a></li>
+        <li><a routerLink="/reports">Reports</a></li>
+        <li><a routerLink="/news">News blog</a></li>
+        <li><a routerLink="/page/faq">FAQ</a></li>
+        <li><a routerLink="/profile">Profile</a></li>
+        <li><a routerLink="/page/contact">Contact</a></li>
+        <li><a routerLink="/page/manual">Manual</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="bottom-line">
+  <div class="container cf">
+    <div class="calendar fl">{{date| date:'dd MMMM, yyyy'}}</div>
+    <div class="time fl">Server <span>{{date| date:'HH:mm:ss'}}</span></div>
+    <div class="time fl">USA (PST)<span>{{pst| date:'HH:mm:ss'}}</span></div>
+    <div class="time fl">USA (EST)<span>{{est| date:'HH:mm:ss'}}</span></div>
+    <div class="time fl">Europe (Gmt)<span>{{gmt| date:'HH:mm:ss'}}</span></div>
+    <div class="finance fl">
+      <div class="stats fl">
+        <div class="dep">Deposit: <b>$</b></div>
+        <div class="cred">Credit: <b>$</b></div>
+      </div>
+      <div class="credit fl">Status of credit line:
+        <!--<div [ngClass]="{'yes' : user.creditLine, 'no' : !user.creditLine}">{{user.creditLine ? 'Yes' : 'No'}}</div>-->
+      </div>
+    </div>
+    <div class="charity fl">
+      <div class="text fl">Support of children deprived of care!</div>
+      <a href="" class="heart fl">Join us</a>
+    </div>
+    <div class="profile fl">
+      <div class="block fl"><a (click)="logout()" href="#">Log out</a>
+        <div class="id">My ID:</div>
+      </div>
+      <div class="block fl"><a></a>
+        <div class="id"></div>
+      </div>
+    </div>
+  </div>
+</div>

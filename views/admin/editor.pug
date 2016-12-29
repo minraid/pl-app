@@ -1,0 +1,19 @@
+//- todo:
+	//- align left
+	//- align center
+	//- align right
+	//- font color
+.tools.cf(contenteditable="false")
+	.btn.fl.undo((mousedown)="edit('undo',false,null, $event)")
+	.btn.fl.redo((mousedown)="edit('redo',false,null, $event)")
+	.btn.fl.left((mousedown)="edit('justifyLeft',false,null, $event)")
+	.btn.fl.center((mousedown)="edit('justifyCenter',false,null, $event)")
+	.btn.fl.right((mousedown)="edit('justifyRight',false,null, $event)")
+	.btn.fl.bold((mousedown)="edit('bold',false,null, $event)") B
+	.btn.fl.italic((mousedown)="edit('italic',false,null, $event)") I
+	.btn.fl.ol((mousedown)="edit('insertOrderedList',false,null, $event)")
+	.btn.fl.ul((mousedown)="edit('insertUnorderedList',false,null, $event)")
+	//- .btn.fl.link((mousedown)="edit('createLink',false,null, $event)") a
+	//- .btn.fl.remove-link((mousedown)="edit('unlink',false,null, $event)") /a
+	.btn.fl.underline((mousedown)="edit('underline',false,null, $event)") U
+.data(contenteditable="true", (blur)="update($event)", [innerHTML]="content")

@@ -1,0 +1,26 @@
+.top-line
+	.container.cf
+		a.logo.fl(href="")
+		.menu.fl
+			ul
+				li
+					a([routerLink]="['Report']") Reports
+				li
+					a([routerLink]="['Categories']") Categories
+				li
+					a([routerLink]="['Products']") Products
+				li
+					a([routerLink]="['Users']") Users
+				li
+					a([routerLink]="['Pages']") Text pages
+				li
+					a([routerLink]="['News']") News
+				li
+					a([routerLink]="['Faq']") Faq
+		.profile.fl
+			.block.fl
+				a(href="#", (click)="logout()") Log out
+				.id My ID:
+			.block.fl
+				a(href="") admin
+				.id 123

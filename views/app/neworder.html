@@ -1,0 +1,82 @@
+
+<div class="container content">
+  <div class="breadcrumbs"><a href="">Home</a><span>Order</span></div>
+  <finance></finance>
+  <div class="content">
+    <h1>Order</h1>
+    <div class="main order cf">
+      <popup [message]="err || 'Order successfully saved'" *ngIf="showPopup"></popup>
+      <form class="col-1" #orderForm="ngForm" (ngSubmit)="save()" *ngIf="active">
+        <div class="input-group cf">
+          <label class="fl">Partner ID</label><span class="fl">{{user._id}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Nick Name</label><span class="fl">{{user.nickname}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">First Name</label>
+          <input class="fl" type="text" [(ngModel)]="order.customer.name" ngControl="name" required="required"/>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Last Name</label>
+          <input class="fl" type="text" [(ngModel)]="order.customer.lastName" ngControl="lastName" required="required"/>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Phone</label>
+          <input class="fl" type="text" [(ngModel)]="order.customer.phone" pattern="[0-9]{10,12}" maxlength="12" ngControl="phone" required="required"/>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Shipping address</label>
+          <input class="fl" type="text" [(ngModel)]="order.address.address" ngControl="address" required="required"/>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">City</label>
+          <input class="fl" type="text" [(ngModel)]="order.address.city" ngControl="city" required="required"/>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Country</label>
+          <select [(ngModel)]="order.address.country" ngControl="country" required="required">
+            <option value="">Select country</option>
+            <option *ngFor="let country of countries" value="{{country}}">{{country}}</option>
+          </select>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Zip/Postal code</label>
+          <input class="fl" type="text" [(ngModel)]="order.address.zip" pattern="[0-9]{1,6}" maxlength="6" ngControl="zip" required="required"/>
+        </div>
+        <div class="products" *ngFor="let select of order.products; let i = index">
+          <div class="input-group cf">
+            <label class="fl">Product</label>
+            <select class="fl" [(ngModel)]="order.products[i]" ngControl="product" (change)="updateAmount(order.products[i])">
+              <option value="">Select product</option>
+              <option *ngFor="let product of products" [ngValue]="product" [disabled]="inProducts(product)">{{product.name}}</option>
+            </select>
+            <div class="message fl" *ngIf="order.products[i].pricePerPill">Price per pill: ${{order.products[i].pricePerPill}}</div>
+          </div>
+          <div class="input-group cf">
+            <label class="fl">Quantity</label>
+            <input class="fl" type="text" [(ngModel)]="order.products[i].quantity" ngControl="quantity" (keyup)="updateAmount(order.products[i])" pattern="[0-9]{1,}"/>
+          </div>
+        </div>
+        <div class="input-group cf">
+          <button class="fr add-more" type="button" (click)="addProduct()">Add More</button>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Delivery method</label>
+          <div class="radio-inputs fl">
+            <input class="fl" type="radio" name="del_method" id="standart" (click)="delivery(false)" [checked]="!order.expressDelivery"/>
+            <label class="radio fl" for="standart">Standart</label>
+            <input class="fl" type="radio" name="del_method" id="express" (click)="delivery(true)" [checked]="order.expressDelivery"/>
+            <label class="radio fl" for="express">Express</label>
+          </div>
+          <div class="message fl">Total amount: ${{order.amount}}</div>
+          <div class="message fl">Cost of delivery: {{order.expressDelivery ? '$50.00' : '$25.00'}}</div>
+        </div>
+        <div class="total" *ngIf="order.amount">Total amount: ${{order.amount + (order.expressDelivery ? 50 : 25)}}</div>
+        <div class="input-group">
+          <button type="submit" [disabled]="!orderForm.form.valid || !order.products[0]._id">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

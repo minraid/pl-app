@@ -1,0 +1,11 @@
+.register
+	h1 Forgot password
+	form(#forgotForm="ngForm", (ngSubmit)="login()")
+		.input-group.cf
+			label.fl Email
+			input.fl(type="email", [(ngModel)]="email", ngControl="email_control", required)
+		.input-group
+			button.register(type="submit", [disabled]="!forgotForm.form.valid") Send
+			.links
+				| Already have an account? 
+				a([routerLink]="['Login']") Login!

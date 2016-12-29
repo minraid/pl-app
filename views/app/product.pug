@@ -1,0 +1,53 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		a(href="") Products
+		span Voltaren(Generic)
+	finance
+	.content
+		h1 {{product.name}}
+		.main
+			.cf
+				.info.fl
+					img(*ngIf="product.productImg", [src]="product.productImg", alt="")
+					.table
+						.tr
+							.th Brandname
+							.tc {{product.brandname}}
+						.tr
+							.th Manufacturer 
+							.tc {{product.manufacturer}}
+						.tr
+							.th Form 
+							.tc {{product.form}}
+						.tr
+							.th Active substance 
+							.tc {{product.activeSubstance}}
+						.tr
+							.th Dosage 
+							.tc {{product.dosage}}
+						.tr
+							.th Packaging 
+							.tc {{product.packaging}}
+						.tr
+							.th Price per pill 
+							.tc {{product.pricePerPill}}
+				.logo.fr
+					img(*ngIf="product.brandImg", [src]="product.brandImg", alt="")
+					.status([ngClass]="product.type") {{product.type}}
+				.text {{product.description}}
+			.promo
+				h3 Promotional materials
+				ul
+					li.photos
+						a(href="" target="_blank") Photos
+					li.logos
+						a(href="" target="_blank") Logos
+					li.leaflets
+						a(href="" target="_blank") Package leaflets
+					li.miniature
+						a(href="" target="_blank") Miniature picture
+					li.texts
+						a(href="" target="_blank") Texts for shop
+					li.other
+						a(href="" target="_blank") Other

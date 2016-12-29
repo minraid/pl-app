@@ -1,0 +1,11 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span News
+	.content
+		h1 News
+		a.main.news(*ngFor="let post of news", [routerLink]="['Post', {id:post._id}]")
+			.cf
+				h2.fl {{post.title}}
+				.date.fr {{post.date| date:'dd/MM/y'}}
+			.text([innerHTML]="post.content| sanitize")

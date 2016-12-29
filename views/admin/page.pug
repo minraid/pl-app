@@ -1,0 +1,14 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span {{page.title || 'New page'}}
+	.content
+		form(#pageForm="ngForm", (ngSubmit)="save()")
+			h1
+				input(placeholder="Enter title", [(ngModel)]="page.title", ngControl="title", required)
+			.main.page
+				select([(ngModel)]="page.type", ngControl="type", required)
+					option(value="children") Children Support
+					option(value="manual") Manual
+				editor(content="{{page.content}}", (onUpdate)="update($event)")
+				button.save(type="submit", [disabled]="!pageForm.form.valid") Save

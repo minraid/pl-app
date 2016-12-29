@@ -1,0 +1,63 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span Order
+	finance
+	.content
+		h1 Order
+		.main.order.cf
+			popup([message]="err || 'Order successfully saved'", *ngIf="showPopup")
+			form.col-1(#orderForm="ngForm", (ngSubmit)="save()", *ngIf="active")
+				.input-group.cf
+					label.fl Partner ID
+					span.fl {{user._id}}
+				.input-group.cf
+					label.fl Nick Name
+					span.fl {{user.nickname}}
+				.input-group.cf
+					label.fl First Name
+					input.fl(type="text", [(ngModel)]="order.customer.name", ngControl="name", required)
+				.input-group.cf
+					label.fl Last Name
+					input.fl(type="text", [(ngModel)]="order.customer.lastName", ngControl="lastName", required)
+				.input-group.cf
+					label.fl Phone
+					input.fl(type="text", [(ngModel)]="order.customer.phone", pattern="[0-9]{10,12}", maxlength="12", ngControl="phone", required)
+				.input-group.cf
+					label.fl Shipping address
+					input.fl(type="text", [(ngModel)]="order.address.address", ngControl="address", required)
+				.input-group.cf
+					label.fl City
+					input.fl(type="text", [(ngModel)]="order.address.city", ngControl="city", required)
+				.input-group.cf
+					label.fl Country
+					select([(ngModel)]="order.address.country", ngControl="country", required)
+						option(value="") Select country
+						option(*ngFor="let country of countries", value="{{country}}") {{country}}
+				.input-group.cf
+					label.fl Zip/Postal code
+					input.fl(type="text", [(ngModel)]="order.address.zip", pattern="[0-9]{1,6}", maxlength="6", ngControl="zip", required)
+				.products(*ngFor="let select of order.products; let i = index")
+					.input-group.cf
+						label.fl Product
+						select.fl([(ngModel)]="order.products[i]", ngControl="product", (change)="updateAmount(order.products[i])")
+							option(value="") Select product
+							option(*ngFor="let product of products", [ngValue]="product", [disabled]="inProducts(product)") {{product.name}}
+						.message.fl(*ngIf="order.products[i].pricePerPill") Price per pill: ${{order.products[i].pricePerPill}}
+					.input-group.cf
+						label.fl Quantity
+						input.fl(type="text", [(ngModel)]="order.products[i].quantity", ngControl="quantity", (keyup)="updateAmount(order.products[i])", pattern="[0-9]{1,}")
+				.input-group.cf
+					button.fr.add-more(type="button", (click)="addProduct()") Add More
+				.input-group.cf
+					label.fl Delivery method
+					.radio-inputs.fl
+						input.fl(type="radio", name="del_method", id="standart", (click)="delivery(false)", [checked]="!order.expressDelivery")
+						label.radio.fl(for="standart") Standart
+						input.fl(type="radio", name="del_method", id="express", (click)="delivery(true)", [checked]="order.expressDelivery")
+						label.radio.fl(for="express") Express
+					.message.fl Total amount: ${{order.amount}}
+					.message.fl Cost of delivery: {{order.expressDelivery ? '$50.00' : '$25.00'}}
+				.total(*ngIf="order.amount") Total amount: ${{order.amount + (order.expressDelivery ? 50 : 25)}}
+				.input-group
+					button(type="submit", [disabled]="!orderForm.form.valid || !order.products[0]._id") Save

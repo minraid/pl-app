@@ -1,0 +1,15 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span Faq
+	.content
+		h1 Faq
+		.pages
+			.cf
+				button.add.fr([routerLink]="['NewAnswer']") Create Answer
+			.page(*ngFor="let answer of answers")
+				.cf
+					a.fl([routerLink]="['Answer', {id:answer._id}]")
+						h2 {{answer.question}}
+					button.fr((click)="delete(answer)") Delete
+				p {{answer.response}}

@@ -1,0 +1,29 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span Users
+	.content
+		h1 Users
+		table.report-table
+			tr
+				th First Name
+				th Last Name
+				th Nick Name
+				th Deposit
+				th Credit
+				th Loan Balance
+				th Credit Line
+				th Orders
+				th Operations
+			tr(*ngFor="let user of users")
+				td {{user.firstName}}
+				td {{user.lastName}}
+				td {{user.nickname}}
+				td ${{user.deposit}}
+				td ${{user.credit}}
+				td ${{user.loanBalance}}
+				td {{user.creditLine ? 'Yes' : 'No'}}
+				td {{user.orders.length}}
+				td
+					button.edit([routerLink]="['User', {id:user._id}]") Edit
+					button.delete((click)="delete(user)") Delete

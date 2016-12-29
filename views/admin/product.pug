@@ -1,0 +1,97 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span {{product.name || 'New Product'}}
+	.content
+		popup([message]="'Product successfully saved'", *ngIf="showPopup")
+		form(#productForm="ngForm", (ngSubmit)="save()", *ngIf="active")
+			h1
+				input(type="text", [(ngModel)]="product.name", ngControl="name", required, placeholder="Enter name")
+			.main
+				.cf
+					.info.fl
+						img(*ngIf="product.productImg", [src]="product.productImg", alt="")
+						.upload(*ngIf="!product.productImg")
+							input#productImg(type="file", (change)="upload($event, 'productImg')")
+							label(for="productImg") Product Image
+						.cf.auto(*ngIf="product.productImg")
+							.upload.fl
+								input#productImg(type="file", (change)="upload($event, 'productImg')")
+								label(for="productImg") Upload new
+							button.fl(type="button", (click)="product.productImg=null") Remove
+						.table
+							.tr
+								.th Brandname
+								.tc 
+									input(type="text", [(ngModel)]="product.brandname", ngControl="brandname", required, placeholder="Enter brandname")
+							.tr
+								.th Manufacturer 
+								.tc 
+									input(type="text", [(ngModel)]="product.manufacturer", ngControl="manufacturer", required, placeholder="Enter manufacturer")
+							.tr
+								.th Form 
+								.tc 
+									input(type="text", [(ngModel)]="product.form", ngControl="form", required, placeholder="Enter form")
+							.tr
+								.th Active substance 
+								.tc 
+									input(type="text", [(ngModel)]="product.activeSubstance", ngControl="activeSubstance", required, placeholder="Enter active substance")
+							.tr
+								.th Dosage 
+								.tc 
+									input(type="text", [(ngModel)]="product.dosage", ngControl="dosage", required, placeholder="Enter dosage")
+							.tr
+								.th Packaging 
+								.tc 
+									input(type="text", [(ngModel)]="product.packaging", ngControl="packaging", required, placeholder="Enter packaging")
+							.tr
+								.th Price per pill 
+								.tc 
+									input(type="text", [(ngModel)]="product.pricePerPill", ngControl="pricePerPill", required, placeholder="Enter price per pill")
+					.logo.fr
+						img(*ngIf="product.brandImg", [src]="product.brandImg", alt="")
+						.upload(*ngIf="!product.brandImg")
+							input#brandImg(type="file", (change)="upload($event, 'brandImg')")
+							label(for="brandImg") Brand Image
+						.cf.auto(*ngIf="product.brandImg")
+							.upload.fl
+								input#brandImg(type="file", (change)="upload($event, 'brandImg')")
+								label(for="brandImg") Upload new
+							button.fl(type="button", (click)="product.brandImg=null") Remove
+						.status([ngClass]="product.type")
+							select([(ngModel)]="product.type", ngControl="type", required)
+								option(value="standart") Standart
+								option(value="premium") Premium
+								option(value="deluxe") Deluxe
+						select.category([(ngModel)]="product.category.name", (ngModelChange)="updateCategory()", ngControl="category", required)
+							option(*ngFor="let cat of categories", [value]="cat.name") {{cat.name}}
+						button.save(type="submit", [disabled]="loading") Save
+					.text
+						textarea([(ngModel)]="product.description", ngControl="description", required)
+				.promo
+					h3 Promotional materials
+					ul
+						li.photos
+							input#photos(type="file", (change)="upload($event, 'photos')")
+							label(for="photos") Photos
+							button(*ngIf="product.photos", (click)="product.photos=null") Remove
+						li.logos
+							input#logos(type="file", (change)="upload($event, 'logos')")
+							label(for="logos") Logos
+							button(*ngIf="product.logos", (click)="product.logos=null") Remove
+						li.leaflets
+							input#leaflets(type="file", (change)="upload($event, 'leaflets')")
+							label(for="leaflets") Package leaflets
+							button(*ngIf="product.leaflets", (click)="product.leaflets=null") Remove
+						li.miniature
+							input#miniature(type="file", (change)="upload($event, 'miniature')")
+							label(for="miniature") Miniature picture
+							button(*ngIf="product.miniature", (click)="product.miniature=null") Remove
+						li.texts
+							input#texts(type="file", (change)="upload($event, 'texts')")
+							label(for="texts") Texts for shop
+							button(*ngIf="product.texts", (click)="product.texts=null") Remove
+						li.other
+							input#other(type="file", (change)="upload($event, 'other')")
+							label(for="other") Other
+							button(*ngIf="product.other", (click)="product.other=null") Remove

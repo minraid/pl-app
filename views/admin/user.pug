@@ -1,0 +1,57 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span User
+	.content
+		h1 User
+		.main.profile
+			form(#userForm="ngForm", (ngSubmit)="save()")
+				.input-group.cf
+					label.fl First Name
+					input.fl(type="text", [(ngModel)]="user.firstName", ngControl="firstname", required)
+				.input-group.cf
+					label.fl Last Name
+					input.fl(type="text", [(ngModel)]="user.lastName", ngControl="lastName", required)
+				.input-group.cf
+					label.fl Nick Name
+					input.fl(type="text", [(ngModel)]="user.nickname", ngControl="nickname", required)
+				.input-group.cf
+					label.fl Email
+					input.fl(type="text", [(ngModel)]="user.email", ngControl="email", required)
+				.input-group.cf
+					label.fl Birthday
+					calendar.fl((onSelect)="select($event, birthDate)", [date]="user.birthDate")
+				.input-group.cf
+					label.fl Country
+					select.fl([(ngModel)]="user.country", ngControl="country", required)
+						option(*ngFor="let country of countries", [value]="country") {{country}}
+				.input-group.cf
+					label.fl Phone
+					input.fl(type="text", [(ngModel)]="user.phone", ngControl="phone")
+				.input-group.cf
+					label.fl Skype
+					input.fl(type="text", [(ngModel)]="user.skype", ngControl="skype")
+				.input-group.cf
+					label.fl ICQ
+					input.fl(type="text", [(ngModel)]="user.icq", ngControl="icq")
+				.input-group.cf
+					label.fl Jabber
+					input.fl(type="text", [(ngModel)]="user.jabber", ngControl="jabber")
+				.input-group.cf
+					label.fl Deposit
+					input.fl(type="text", [(ngModel)]="user.deposit", ngControl="deposit")
+				.input-group.cf
+					label.fl Credit
+					input.fl(type="text", [(ngModel)]="user.credit", ngControl="credit")
+				.input-group.cf
+					label.fl Credit Line
+					.radio-inputs.fl
+						input.fl(type="radio", name="creditLine", id="yes", (click)="creditLine(true)", [checked]="user.creditLine")
+						label.radio.fl(for="yes") Yes
+						input.fl(type="radio", name="creditLine", id="no", (click)="creditLine(false)", [checked]="!user.creditLine")
+						label.radio.fl(for="no") No
+				.input-group.cf
+					label.fl Loan Start
+					calendar.fl((onSelect)="select($event, loanStart)", [date]="user.loanStart")
+				.input-group
+					button(type="submit", [disabled]="!userForm.form.valid") Save

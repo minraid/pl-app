@@ -1,0 +1,65 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span Products
+	.content
+		h1 Products
+		.cf
+			button.add-product.fr([routerLink]="['NewProduct']") Create Product
+		table.report-table
+			tr
+				th Name
+				th Category
+				th Brandname
+				th Manufacturer
+				th Form
+				th Active Substance
+				th Dosage
+				th Packaging
+				th Price Per Pill
+				th Type
+				th Operations
+			tr(*ngFor="let product of products")
+				td {{product.name}}
+				td {{product.category.name}}
+				td {{product.brandname}}
+				td {{product.manufacturer}}
+				td {{product.form}}
+				td {{product.activeSubstance}}
+				td {{product.dosage}}
+				td {{product.packaging}}
+				td {{product.pricePerPill}}
+				td {{product.type}}
+				td
+					button.edit([routerLink]="['Product', {id:product._id}]") Edit
+					button.delete((click)="delete(product)") Delete
+		//- .products
+		//- 	.cf
+		//- 		.col-4
+		//- 			a.product([routerLink]="['Product', {id:1}]")
+		//- 				img(src="/img/voltaren-tablet.jpg", alt="")
+		//- 				.status.standart standart
+		//- 				h1 Voltaren (Generic)
+		//- 				.category Men`s sexual health
+		//- 				button more
+		//- 		.col-4
+		//- 			a.product([routerLink]="['Product', {id:1}]")
+		//- 				img(src="/img/voltaren-tablet.jpg", alt="")
+		//- 				.status.standart standart
+		//- 				h1 Voltaren (Generic)
+		//- 				.category Men`s sexual health
+		//- 				button more
+		//- 		.col-4
+		//- 			a.product([routerLink]="['Product', {id:1}]")
+		//- 				img(src="/img/voltaren-tablet.jpg", alt="")
+		//- 				.status.standart standart
+		//- 				h1 Voltaren (Generic)
+		//- 				.category Men`s sexual health
+		//- 				button more
+		//- 		.col-4
+		//- 			a.product([routerLink]="['Product', {id:1}]")
+		//- 				img(src="/img/voltaren-tablet.jpg", alt="")
+		//- 				.status.standart standart
+		//- 				h1 Voltaren (Generic)
+		//- 				.category Men`s sexual health
+		//- 				button more

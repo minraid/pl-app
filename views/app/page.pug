@@ -1,0 +1,7 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span {{page.title}}
+	.content
+		h1 {{page.title}}
+		.main.page([innerHTML]="page.content| sanitize")

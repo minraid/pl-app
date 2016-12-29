@@ -1,0 +1,11 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span {{post.title || 'New post'}}
+	.content
+		form(#postForm="ngForm", (ngSubmit)="save()")
+			h1
+				input(placeholder="Enter title", [(ngModel)]="post.title", ngControl="title", required)
+			.main.post
+				editor(content="{{post.content}}", (onUpdate)="update($event)")
+				button.save(type="submit", [disabled]="!postForm.form.valid") Save

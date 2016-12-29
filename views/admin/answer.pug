@@ -1,0 +1,11 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span {{answer.question || 'New post'}}
+	.content
+		form(#answerForm="ngForm", (ngSubmit)="save()")
+			h1
+				input(placeholder="Enter question", [(ngModel)]="answer.question", ngControl="title", required)
+			.main.post
+				textarea(placeholder="Enter answer", [(ngModel)]="answer.response", ngControl="content", required)
+				button.save(type="submit", [disabled]="!answerForm.form.valid") Save

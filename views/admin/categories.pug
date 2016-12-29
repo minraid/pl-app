@@ -1,0 +1,16 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span Categories
+	.content
+		h1 Categories
+		.main
+			.categories
+				form(#orderForm="ngForm", (ngSubmit)="save()")
+					.input-group.cf
+						input.fl(type="text", [(ngModel)]="category.name", ngControl="name", required)
+						button.fl(type="submit") Save
+				.input-group.cf(*ngFor="let cat of categories")
+					span.fl {{cat.name}}
+					button.fl((click)="edit(cat)") Edit
+					button.fl((click)="delete(cat)") Delete

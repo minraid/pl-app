@@ -1,0 +1,94 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span Order
+	finance([order]="order", [admin]="true")
+	.content
+		h1 Order
+		.main.order.cf
+			popup([message]="'Order successfully saved'", *ngIf="showPopup")
+			form(#orderForm="ngForm", (ngSubmit)="save()")
+				.col-1.fl
+					.input-group.cf
+						label.fl Partner ID
+						span.fl {{order.user._id}}
+					.input-group.cf
+						label.fl Nick Name
+						span.fl {{order.user.nickname}}
+					.input-group.cf
+						label.fl First Name
+						input.fl(type="text", [(ngModel)]="order.customer.name", ngControl="name", required)
+					.input-group.cf
+						label.fl Last Name
+						input.fl(type="text", [(ngModel)]="order.customer.lastName", ngControl="lastName", required)
+					.input-group.cf
+						label.fl Phone
+						input.fl(type="text", [(ngModel)]="order.customer.phone", pattern="[0-9]{10,12}", maxlength="12", ngControl="phone", required)
+					.input-group.cf
+						label.fl Shipping address
+						input.fl(type="text", [(ngModel)]="order.address.address", ngControl="address", required)
+					.input-group.cf
+						label.fl City
+						input.fl(type="text", [(ngModel)]="order.address.city", ngControl="city", required)
+					.input-group.cf
+						label.fl Country
+						select([(ngModel)]="order.address.country", ngControl="country", required)
+							option(value="") Select country
+							option(*ngFor="let country of countries", value="{{country}}") {{country}}
+					.input-group.cf
+						label.fl Zip/Postal code
+						input.fl(type="text", [(ngModel)]="order.address.zip", pattern="[0-9]{1,6}", maxlength="6", ngControl="zip", required)
+					.products(*ngFor="let select of order.products; let i = index")
+						.input-group.cf
+							label.fl Product
+							.admin-select.fl {{order.products[i].name}}
+								select.fl.admin-select([(ngModel)]="order.products[i]", ngControl="product", (change)="updateAmount(order.products[i])")
+									option(value="") Select product
+									option(*ngFor="let product of products", [ngValue]="product", [disabled]="inProducts(product)") {{product.name}}
+							.message.fl(*ngIf="order.products[i].pricePerPill") Price per pill: ${{order.products[i].pricePerPill}}
+						.input-group.cf
+							label.fl Quantity
+							input.fl(type="text", [(ngModel)]="order.products[i].quantity", ngControl="quantity", (keyup)="updateAmount(order.products[i])", pattern="[0-9]{1,}")
+					.input-group.cf
+						label.fl Delivery method
+						.radio-inputs.fl
+							input.fl(type="radio", name="del_method", id="standart", (click)="delivery(false)", [checked]="!order.expressDelivery")
+							label.radio.fl(for="standart") Standart
+							input.fl(type="radio", name="del_method", id="express", (click)="delivery(true)", [checked]="order.expressDelivery")
+							label.radio.fl(for="express") Express
+						.message.fl Total amount: ${{order.amount}}
+						.message.fl Cost of delivery: {{order.expressDelivery ? '$50.00' : '$25.00'}}
+					.total(*ngIf="order.amount") Total amount: ${{order.amount + (order.expressDelivery ? 50 : 25)}}
+				.col-2.fl
+					.input-group.cf
+						label.fl Shipment date
+						calendar.fl((onSelect)="select($event, 'shipmentDate')", [date]="order.shipmentDate")
+					.input-group.cf
+						label.fl Shipping company
+						select
+					.input-group.cf
+						label.fl Tracking
+						input.fl(type="text", [(ngModel)]="order.tracking")
+					.input-group.cf
+						label.fl Overweight
+						input.fl(type="checkbox", [(ngModel)]="order.overweight")
+					.input-group.cf(*ngIf="order.overweight")
+						label.fl Overweight Cost
+						input.fl(type="text", [(ngModel)]="order.overweightCost")
+					.input-group.cf
+						label.fl Repeat sending
+						input.fl(type="checkbox", [(ngModel)]="order.repeat")
+					.input-group.cf
+						label.fl Return
+						input.fl(type="radio", name="return", id="yes", (click)="return(true)", [checked]="order.return")
+						label.radio.fl(for="yes") Yes
+						input.fl(type="radio", name="return", id="no", (click)="return(false)", [checked]="!order.return")
+						label.radio.fl(for="no") No
+					.input-group.cf(*ngIf="order.return")
+						label.fl Return date
+						calendar.fl((onSelect)="select($event, 'returnDate')", [date]="order.returnDate")
+					.input-group.cf
+						label.fl Cost of return
+						input(type="text", [(ngModel)]="order.returnCost")
+					.input-group
+						button(type="submit", [disabled]="!orderForm.form.valid") Save

@@ -1,0 +1,59 @@
+
+<div class="container content">
+  <div class="breadcrumbs"><a href="">Home</a><a href="">Products</a><span>Voltaren(Generic)</span></div>
+  <finance></finance>
+  <div class="content">
+    <h1>{{product.name}}</h1>
+    <div class="main">
+      <div class="cf">
+        <div class="info fl"><img *ngIf="product.productImg" [src]="product.productImg" alt=""/>
+          <div class="table">
+            <div class="tr">
+              <div class="th">Brandname</div>
+              <div class="tc">{{product.brandname}}</div>
+            </div>
+            <div class="tr">
+              <div class="th">Manufacturer </div>
+              <div class="tc">{{product.manufacturer}}</div>
+            </div>
+            <div class="tr">
+              <div class="th">Form </div>
+              <div class="tc">{{product.form}}</div>
+            </div>
+            <div class="tr">
+              <div class="th">Active substance </div>
+              <div class="tc">{{product.activeSubstance}}</div>
+            </div>
+            <div class="tr">
+              <div class="th">Dosage </div>
+              <div class="tc">{{product.dosage}}</div>
+            </div>
+            <div class="tr">
+              <div class="th">Packaging </div>
+              <div class="tc">{{product.packaging}}</div>
+            </div>
+            <div class="tr">
+              <div class="th">Price per pill </div>
+              <div class="tc">{{product.pricePerPill}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="logo fr"><img *ngIf="product.brandImg" [src]="product.brandImg" alt=""/>
+          <div class="status" [ngClass]="product.type">{{product.type}}</div>
+        </div>
+        <div class="text">{{product.description}}</div>
+      </div>
+      <div class="promo">
+        <h3>Promotional materials</h3>
+        <ul>
+          <li class="photos"><a href="" target="_blank">Photos</a></li>
+          <li class="logos"><a href="" target="_blank">Logos</a></li>
+          <li class="leaflets"><a href="" target="_blank">Package leaflets</a></li>
+          <li class="miniature"><a href="" target="_blank">Miniature picture</a></li>
+          <li class="texts"><a href="" target="_blank">Texts for shop</a></li>
+          <li class="other"><a href="" target="_blank">Other</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+.container.content
+	.breadcrumbs
+		a([routerLink]="['Main']") Home
+		a([routerLink]="['Products']", *ngIf="category._id") Products
+		span {{category.name || 'Products'}}
+	finance
+	.content
+		h1 {{category.name || 'Products'}}
+		.products
+			.cf
+				.col-4(*ngFor="let product of products")
+					a.product([routerLink]="['Product', {id:product._id}]")
+						img(*ngIf="product.productImg", [src]="product.productImg", alt="")
+						.status([ngClass]="product.type") {{product.type}}
+						h1 {{product.name}}
+						.category {{product.category.name}}
+						button more

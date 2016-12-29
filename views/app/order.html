@@ -1,0 +1,80 @@
+
+<div class="container content">
+  <div class="breadcrumbs"><a href="">Home</a><span>Order</span></div>
+  <finance></finance>
+  <div class="content">
+    <h1>Order</h1>
+    <div class="main order cf">
+      <div class="col-1 fl">
+        <div class="input-group cf">
+          <label class="fl">Partner ID</label><span class="fl">{{order.user._id}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Nick Name</label><span class="fl">{{order.user.nickname}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">First Name</label><span class="fl">{{order.customer.name}}</span>
+        </div>
+        <div class="input-group c"f>
+          <label class="fl">Last Name</label><span class="fl">{{order.customer.lastName}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Phone</label><span class="fl">{{order.customer.phone}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Shipping address</label><span class="fl">{{order.address.address}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">City</label><span class="fl">{{order.address.city}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Country</label><span class="fl">{{order.address.country}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Zip/Postal code</label><span class="fl">{{order.address.zip}}</span>
+        </div>
+        <div class="products" *ngFor="let product of order.products">
+          <div class="input-group cf">
+            <label class="fl">Product</label><span class="fl">{{product.name}}</span>
+            <div class="message fl">Price per pill: ${{product.pricePerPill}}</div>
+          </div>
+          <div class="input-group cf">
+            <label class="fl">Quantity</label><span class="fl">{{product.quantity}}</span>
+          </div>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Delivery method</label><span class="fl">{{order.expressDelivery ? 'Express' : 'Standart'}}</span>
+          <div class="message fl">Total amount: ${{order.amount}}</div>
+          <div class="message fl">Cost of delivery: {{order.expressDelivery ? '$50.00' : '$25.00'}}</div>
+        </div>
+        <div class="total">Total amount: ${{order.amount + (order.expressDelivery ? 50 : 25)}}</div>
+      </div>
+      <div class="col-2 fl">
+        <div class="input-group cf">
+          <label class="fl">Shipment date</label><span class="fl">{{order.shipmentDate| date:'dd/MM/y'}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Shipping company</label><span class="fl"></span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Tracking</label><span class="fl">{{order.tracking}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Return</label><span class="fl">{{order.return ? 'Yes' : 'No'}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Return date</label><span class="fl">{{order.returnDate| date:'dd/MM/y'}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Cost of return</label><span class="fl">${{order.returnCost}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Overweight</label><span class="fl">{{order.overweight ? 'Yes' : 'No'}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Cost of overweight</label><span class="fl">${{order.overweightCost}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

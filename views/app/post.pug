@@ -1,0 +1,11 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		a(href="") News blog
+		span {{post.title}}
+	.content
+		h1 {{post.title}}
+		.main.news
+			.cf
+				.date.fr {{post.date| date:'dd/MM/y'}}
+			.text([innerHTML]="post.content| sanitize")

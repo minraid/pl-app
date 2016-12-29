@@ -1,0 +1,75 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span Order
+	finance
+	.content
+		h1 Order
+		.main.order.cf
+			.col-1.fl
+				.input-group.cf
+					label.fl Partner ID
+					span.fl {{order.user._id}}
+				.input-group.cf
+					label.fl Nick Name
+					span.fl {{order.user.nickname}}
+				.input-group.cf
+					label.fl First Name
+					span.fl {{order.customer.name}}
+				.input-group.cf
+					label.fl Last Name
+					span.fl {{order.customer.lastName}}
+				.input-group.cf
+					label.fl Phone
+					span.fl {{order.customer.phone}}
+				.input-group.cf
+					label.fl Shipping address
+					span.fl {{order.address.address}}
+				.input-group.cf
+					label.fl City
+					span.fl {{order.address.city}}
+				.input-group.cf
+					label.fl Country
+					span.fl {{order.address.country}}
+				.input-group.cf
+					label.fl Zip/Postal code
+					span.fl {{order.address.zip}}
+				.products(*ngFor="let product of order.products")
+					.input-group.cf
+						label.fl Product
+						span.fl {{product.name}}
+						.message.fl Price per pill: ${{product.pricePerPill}}
+					.input-group.cf
+						label.fl Quantity
+						span.fl {{product.quantity}}
+				.input-group.cf
+					label.fl Delivery method
+					span.fl {{order.expressDelivery ? 'Express' : 'Standart'}}
+					.message.fl Total amount: ${{order.amount}}
+					.message.fl Cost of delivery: {{order.expressDelivery ? '$50.00' : '$25.00'}}
+				.total Total amount: ${{order.amount + (order.expressDelivery ? 50 : 25)}}
+			.col-2.fl
+				.input-group.cf
+					label.fl Shipment date
+					span.fl {{order.shipmentDate| date:'dd/MM/y'}}
+				.input-group.cf
+					label.fl Shipping company
+					span.fl
+				.input-group.cf
+					label.fl Tracking
+					span.fl {{order.tracking}}
+				.input-group.cf
+					label.fl Return
+					span.fl {{order.return ? 'Yes' : 'No'}}
+				.input-group.cf
+					label.fl Return date
+					span.fl {{order.returnDate| date:'dd/MM/y'}}
+				.input-group.cf
+					label.fl Cost of return
+					span.fl ${{order.returnCost}}
+				.input-group.cf
+					label.fl Overweight
+					span.fl {{order.overweight ? 'Yes' : 'No'}}
+				.input-group.cf
+					label.fl Cost of overweight
+					span.fl ${{order.overweightCost}}

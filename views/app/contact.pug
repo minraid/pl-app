@@ -1,0 +1,29 @@
+.container.content
+	.breadcrumbs
+		a(href="") Home
+		span Contact
+	.content
+		h1 Contact
+		popup([message]="'Your message successfully sent'", *ngIf="showPopup")
+		form.main.contact(#contactForm="ngForm", (ngSubmit)="send()", *ngIf="active")
+			| If you have any questions not addressed in our FAQ page, please contact us using the form below.
+			.important * marked fields are required
+			.cf
+				.input-group.fl
+					label What is this about? *
+					select([(ngModel)]="message.subject", ngControl="subject", required)
+						option(value="") Please select a subject
+						option(value="Test") Test
+					.message Please select a subject
+				.input-group.fl
+					label Your Email *
+					input(type="email", [(ngModel)]="message.email", ngControl="email", required)
+					.message Please enter a valid email
+			.input-group
+				label Your message *
+				textarea([(ngModel)]="message.text", ngControl="text", required)
+				.message Please enter your message
+			.input-group
+				label Home phone (optional)
+				input(type="text", [(ngModel)]="message.phone", ngControl="phone")
+			button.send(type="submit", [disabled]="!contactForm.form.valid") Send
