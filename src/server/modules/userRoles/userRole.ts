@@ -1,7 +1,7 @@
 import {IUserRoleModel, IUserRoleDocument} from './interfaces';
 import {BaseRepository} from '../db/baseRepo';
 
-export class Product extends BaseRepository<IUserRoleDocument> {
+export class UserRole extends BaseRepository<IUserRoleDocument> {
   private _userRoleModel: IUserRoleModel;
 
   constructor(userRoleModel: IUserRoleModel) {

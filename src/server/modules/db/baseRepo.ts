@@ -1,10 +1,11 @@
-import {Query, Document, Model} from 'mongoose';
+import { Query, Document, Model } from 'mongoose';
+import { DocumentQuery } from 'mongoose';
 
 interface IRead<T> {
-  retrieve(): Query<T[]>;
-  findById(id: number): Query<T>;
-  findOne(cond?: Object): Query<T>;
-  find(cond: Object): Query<T[]>;
+  retrieve(): DocumentQuery<T[], Document>;
+  findById(id: number): DocumentQuery<T, Document>;
+  findOne(cond?: Object): DocumentQuery<T, Document>;
+  find(cond: Object): DocumentQuery<T[], Document>;
 }
 
 interface IWrite<T> {
@@ -21,18 +22,19 @@ export class BaseRepository<T extends Document> implements IRead<T>, IWrite<T> {
     this._model = model;
   }
 
-  retrieve(): Query<T[]> {
+  retrieve(): DocumentQuery<Document[], Document> {
     return this._model.find({});
   }
-  findById(id: number): Query<T> {
+
+  findById(id: number): DocumentQuery<Document, Document> {
     return this._model.findById(id);
   }
 
-  findOne(cond?: Object): Query<T> {
+  findOne(cond?: Object): DocumentQuery<Document, Document> {
     return this._model.findOne(cond);
   }
 
-  find(cond: Object): Query<T[]> {
+  find(cond: Object): DocumentQuery<Document[], Document> {
     return this._model.find(cond);
   }
 

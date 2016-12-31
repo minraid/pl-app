@@ -4,6 +4,7 @@ import * as session from 'express-session';
 import * as bodyParser from 'body-parser';
 import { DBconnection } from "./db/connection";
 import { authRouter } from './routes/auth';
+import { apiRouter } from './routes/api';
 
 export class Server {
   private App: express.Application;
@@ -14,6 +15,7 @@ export class Server {
 
   public setRoutes() {
     this.App.use('/auth', authRouter);
+    this.App.use('/api', apiRouter);
     // this.App.get('*', (req: express.Request, res: express.Response) => {
     //   res.send('Hello world');
     //   // const category = new categoriesModel({name: 'Test'});

@@ -38,11 +38,11 @@ export class Auth {
           user.create(data).then(password => {
             console.log(password); // TODO: send mail;
             resolve(password)
-          })
+          }, reject)
         } else {
           reject('Email has been used');
         }
-      })
+      }, reject)
     })
   }
 

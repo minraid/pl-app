@@ -1,7 +1,9 @@
-import {IUserDocument, IUserModel} from './interfaces';
-import {usersModel} from '../db/users/model';
 import * as bcrypt from 'bcrypt';
-import {BaseRepository} from '../db/baseRepo';
+import { Query } from 'mongoose';
+import { IUserDocument, IUserModel } from './interfaces';
+import { usersModel } from '../db/users/model';
+import { BaseRepository } from '../db/baseRepo';
+import { DocumentQuery, Document } from 'mongoose';
 
 export class User extends BaseRepository<IUserDocument> {
   private _usersModel: IUserModel;
@@ -28,6 +30,24 @@ export class User extends BaseRepository<IUserDocument> {
         user._generateNewPassword(data).then((password: string) => resolve(password), reject);
       }, reject)
     });
+  }
+
+  static get(id: number): DocumentQuery<Document, Document> {
+    const user = new User(usersModel);
+    if (id) {
+      return user.findById(id);
+    }
+    // return user.retrieve();
+  }
+
+  static update(id: number, newCategory: IUserDocument): Query<IUserDocument> {
+    const user = new User(usersModel);
+    return user.update(id, newCategory);
+  }
+
+  static delete(id: number): Query<void> {
+    const user = new User(usersModel);
+    return user.delete(id);
   }
 
   private _generateNewPassword(user: IUserDocument): Promise<string> {

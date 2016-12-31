@@ -8,9 +8,6 @@
     "sourceMap": true,
     "sourceRoot": "src",
     "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
     "lib": ["es6", "dom"]
   },
   "exclude": [
