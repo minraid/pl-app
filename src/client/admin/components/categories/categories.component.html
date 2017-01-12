@@ -1,0 +1,21 @@
+
+<div class="container content">
+  <div class="breadcrumbs"><a href="">Home</a><span>Categories</span></div>
+  <div class="content">
+    <h1>Categories</h1>
+    <div class="main">
+      <div class="categories">
+        <form #orderForm="ngForm">
+          <div class="input-group cf">
+            <input class="fl" type="text" required="required"/>
+            <button class="fl" type="submit">Save</button>
+          </div>
+        </form>
+        <!--<div class="input-group cf" *ngFor="let cat of categories"><span class="fl">{{cat.name}}</span>
+          <button class="fl" (click)="edit(cat)">Edit</button>
+          <button class="fl" (click)="delete(cat)">Delete</button>
+        </div>-->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,23 +1,22 @@
 import { NgModule }      from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-
 import { AppComponent }  from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home/home.component';
-import { ProductsModule } from './products/products.module';
-import { OrdersModule } from './orders/orders.module';
-import { ReportsModule } from './reports/reports.module';
-import { PagesModule } from './pages/pages.module';
-import { ProfileModule } from './profile/profile.module';
-import { NewsModule } from './news/news.module';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
+import { SharedModule } from '../shared/shared.module';
+
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './components/home/home.component';
+
+import { ProductsModule } from './modules/products/products.module';
+import { OrdersModule } from './modules/orders/orders.module';
+import { ReportsModule } from './modules/reports/reports.module';
+import { PagesModule } from './modules/pages/pages.module';
+import { ProfileModule } from './modules/profile/profile.module';
+import { NewsModule } from './modules/news/news.module';
 
 @NgModule({
   imports: [
-    BrowserModule,
-    FormsModule,
+    SharedModule,
     AppRoutingModule,
     ProductsModule,
     OrdersModule,

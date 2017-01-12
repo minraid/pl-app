@@ -1,0 +1,77 @@
+
+<div class="container content">
+  <div class="breadcrumbs"><a href="">Home</a><span>User</span></div>
+  <div class="content">
+    <h1>User</h1>
+    <div class="main profile">
+      <form #userForm="ngForm">
+        <div class="input-group cf">
+          <label class="fl">First Name</label>
+          <input class="fl" type="text" required="required"/>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Last Name</label>
+          <input class="fl" type="text" required="required"/>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Nick Name</label>
+          <input class="fl" type="text" required="required"/>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Email</label>
+          <input class="fl" type="text" required="required"/>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Birthday</label>
+          <!--<calendar class="fl" (onSelect)="select($event, birthDate)" [date]="user.birthDate"></calendar>-->
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Country</label>
+          <select class="fl" required="required">
+            <option></option>
+          </select>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Phone</label>
+          <input class="fl" type="text"/>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Skype</label>
+          <input class="fl" type="text"/>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">ICQ</label>
+          <input class="fl" type="text"/>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Jabber</label>
+          <input class="fl" type="text"/>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Deposit</label>
+          <input class="fl" type="text"/>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Credit</label>
+          <input class="fl" type="text"/>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Credit Line</label>
+          <div class="radio-inputs fl">
+            <input class="fl" type="radio" name="creditLine" id="yes"/>
+            <label class="radio fl" for="yes">Yes</label>
+            <input class="fl" type="radio" name="creditLine" id="no"/>
+            <label class="radio fl" for="no">No</label>
+          </div>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Loan Start</label>
+          <!--<calendar class="fl" (onSelect)="select($event, loanStart)" [date]="user.loanStart"></calendar>-->
+        </div>
+        <div class="input-group">
+          <button type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

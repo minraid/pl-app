@@ -1,0 +1,18 @@
+<div class="container content">
+  <div class="breadcrumbs"><a href="">Home</a><span>New page</span></div>
+  <div class="content">
+    <form #pageForm="ngForm">
+      <h1>
+        <input placeholder="Enter title" required="required"/>
+      </h1>
+      <div class="main page">
+        <select required="required">
+          <option value="children">Children Support</option>
+          <option value="manual">Manual</option>
+        </select>
+        <!--<editor content="{{page.content}}" (onUpdate)="update($event)"></editor>-->
+        <button class="save" type="submit">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

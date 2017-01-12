@@ -32,12 +32,12 @@ export class User extends BaseRepository<IUserDocument> {
     });
   }
 
-  static get(id: number): DocumentQuery<Document, Document> {
+  static get(id: number): DocumentQuery<Document, Document>| DocumentQuery<Document[], Document> {
     const user = new User(usersModel);
     if (id) {
       return user.findById(id);
     }
-    // return user.retrieve();
+    return user.retrieve();
   }
 
   static update(id: number, newCategory: IUserDocument): Query<IUserDocument> {
