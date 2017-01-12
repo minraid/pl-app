@@ -6,6 +6,6 @@ typings/
 **.map
 !/.eslintrc.js
 !gulpfile.js
-!/conf/**.js
-!/gulp_tasks/**.js
+!conf/*.js
+!gulp_tasks/*.js
 /src/server/typings/
