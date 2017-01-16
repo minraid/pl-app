@@ -1,13 +1,12 @@
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 
-export abstract class CrudService<T> {
-    private instance: string = '';
+export abstract class BaseApiService<T> {
     private url: string = `/api/${this.instance}`;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, private instance: string) { }
 
-    get(id: string): Observable<T[]>| Observable<T> {
+    get(id?: string): Observable<T[]>| Observable<T> {
       if (id) {
         return this.http.get(`${this.url}/${id}`)
           .map((response: Response) => response.json().data as T)

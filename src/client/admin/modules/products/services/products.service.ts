@@ -1,25 +1,42 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from "@angular/http";
-import { Observable } from "rxjs";
+import { BaseApiService } from "../../../../shared/services/base-api.service";
+import { Http } from "@angular/http";
+
+export interface IProduct {
+  _id: number,
+  title: string,
+  description: string,
+  image: string,
+  brand: {
+    title: string,
+    image: string,
+  },
+  manufacturer: {
+    title: string
+  },
+  category: number,
+  details: {
+    form: string,
+    activeSubstance: string,
+    dosage: string,
+    packaging: string,
+    quantity: number,
+    pricePerPill: number,
+    type: string
+  },
+  promo: {
+    photos: string,
+    logos: string,
+    leaflets: string,
+    miniature: string,
+    texts: string,
+    other: string
+  }
+}
 
 @Injectable()
-export class ProductsService {
-
-  constructor(private http: Http) {
-  }
-
-  get(): Observable<any> {
-    return this.http.get('/api/products')
-      .map((r: Response) => r.json().data);
-  }
-
-  save(product): Observable<any> {
-    return this.http.post('/api/products', product)
-      .map((r: Response) => r.json().data);
-  }
-
-  delete(id): Observable<void> {
-    return this.http.delete(`/api/products/${id}`)
-      .map((r: Response) => r.json().data);
+export class ProductsService extends BaseApiService<IProduct> {
+  constructor(http: Http) {
+    super(http, 'products');
   }
 }

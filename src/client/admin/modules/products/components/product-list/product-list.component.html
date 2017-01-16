@@ -6,5 +6,6 @@
       <button class="add-product fr" routerLink="new">Create Product</button>
     </div>
     <data-table></data-table>
+    <div *ngFor="let product of products | async">{{product | json}}</div>
   </div>
 </div>
