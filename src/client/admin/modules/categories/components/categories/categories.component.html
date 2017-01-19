@@ -11,6 +11,7 @@
             <button class="fl" type="submit">Save</button>
           </div>
         </form>
+        <div ng-for="let category of categories | async">{{category | json}}</div>
         <!--<div class="input-group cf" *ngFor="let cat of categories"><span class="fl">{{cat.name}}</span>
           <button class="fl" (click)="edit(cat)">Edit</button>
           <button class="fl" (click)="delete(cat)">Delete</button>

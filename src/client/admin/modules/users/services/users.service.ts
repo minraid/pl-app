@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BaseApiService } from "../../../../shared/services/base-api.service";
 import { Http } from "@angular/http";
-import { IProduct } from "../products";
+import { IUser } from "../users";
 
 @Injectable()
-export class ProductsService extends BaseApiService<IProduct> {
+export class UsersService extends BaseApiService<IUser> {
+
   constructor(http: Http) {
-    super(http, 'products');
+    super(http, 'users');
   }
+
 }

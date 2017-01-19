@@ -6,13 +6,13 @@ import { Observable } from "rxjs";
   templateUrl: 'product-list.component.html'
 })
 export class ProductListComponent implements OnInit {
-    private products: Observable<IProduct[]>|Observable<IProduct>;
+    private products: Observable<IProduct[]>;
 
   constructor(private Products: ProductsService) {
   }
 
   ngOnInit() {
-    this.products = this.Products.get();
+    this.products = this.Products.retrieve();
   }
 
 }

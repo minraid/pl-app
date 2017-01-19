@@ -6,14 +6,15 @@ export abstract class BaseApiService<T> {
 
     constructor(private http: Http, private instance: string) { }
 
-    get(id?: string): Observable<T[]>| Observable<T> {
-      if (id) {
-        return this.http.get(`${this.url}/${id}`)
-          .map((response: Response) => response.json().data as T)
-          .catch(this.handleError);
-      }
+    retrieve(): Observable<T[]> {
       return this.http.get(this.url)
-        .map((response: Response) => response.json().data as T[])
+        .map((response: Response) => response.json() as T[])
+        .catch(this.handleError);
+    }
+
+    get(id: string): Observable<T> {
+      return this.http.get(`${this.url}/${id}`)
+        .map((response: Response) => response.json() as T)
         .catch(this.handleError);
     }
 
@@ -29,7 +30,7 @@ export abstract class BaseApiService<T> {
         .catch(this.handleError);
     }
 
-    private handleError(error: any): Promise<any> {
+    private handleError(error: any): Promise<any> { // TODO: create support class with static handleError method
       console.error('An error occurred', error);
       return Promise.reject(error.message || error);
     }
