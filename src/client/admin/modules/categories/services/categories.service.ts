@@ -6,7 +6,7 @@ import { Http } from "@angular/http";
 @Injectable()
 export class CategoriesService extends BaseApiService<ICategory> {
 
-    constructor(private http: Http) {
+    constructor(http: Http) {
       super(http, 'categories')
     }
 
