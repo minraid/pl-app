@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService, IUser } from "../../services/users.service";
+import { UsersService } from "../../services/users.service";
 import { Observable } from "rxjs";
+import { IUser } from "../../users";
 
 @Component({
     templateUrl: 'user-list.component.html'

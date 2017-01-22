@@ -1,9 +1,9 @@
 <div class="container content">
   <div class="breadcrumbs"><a href="">Home</a><span>New Product</span></div>
   <div class="content">
-    <form #productForm="ngForm">
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
       <h1>
-        <input type="text" required="required" placeholder="Enter name"/>
+        <input type="text" name="name" [(ngModel)]="product.title" required="required" placeholder="Enter name"/>
       </h1>
       <div class="main">
         <div class="cf">
@@ -23,43 +23,49 @@
               <div class="tr">
                 <div class="th">Brandname</div>
                 <div class="tc">
-                  <input type="text" required="required" placeholder="Enter brandname"/>
+                  <input type="text" name="brand.title" [(ngModel)]="product.brand.title" required="required"
+                         placeholder="Enter brandname"/>
                 </div>
               </div>
               <div class="tr">
                 <div class="th">Manufacturer</div>
                 <div class="tc">
-                  <input type="text" required="required" placeholder="Enter manufacturer"/>
+                  <input type="text" name="manufacturer.title" [(ngModel)]="product.manufacturer.title" required="required"
+                         placeholder="Enter manufacturer"/>
                 </div>
               </div>
               <div class="tr">
                 <div class="th">Form</div>
                 <div class="tc">
-                  <input type="text" required="required" placeholder="Enter form"/>
+                  <input type="text" name="details.form" [(ngModel)]="product.details.form" required="required" placeholder="Enter form"/>
                 </div>
               </div>
               <div class="tr">
                 <div class="th">Active substance</div>
                 <div class="tc">
-                  <input type="text" required="required" placeholder="Enter active substance"/>
+                  <input type="text" name="details.activeSubstance" [(ngModel)]="product.details.activeSubstance" required="required"
+                         placeholder="Enter active substance"/>
                 </div>
               </div>
               <div class="tr">
                 <div class="th">Dosage</div>
                 <div class="tc">
-                  <input type="text" required="required" placeholder="Enter dosage"/>
+                  <input type="text" name="details.dosage" [(ngModel)]="product.details.dosage" required="required"
+                         placeholder="Enter dosage"/>
                 </div>
               </div>
               <div class="tr">
                 <div class="th">Packaging</div>
                 <div class="tc">
-                  <input type="text" required="required" placeholder="Enter packaging"/>
+                  <input type="text" name="details.packaging"[(ngModel)]="product.details.packaging" required="required"
+                         placeholder="Enter packaging"/>
                 </div>
               </div>
               <div class="tr">
                 <div class="th">Price per pill</div>
                 <div class="tc">
-                  <input type="text" required="required" placeholder="Enter price per pill"/>
+                  <input type="number" name="details.pricePerPill" [(ngModel)]="product.details.pricePerPill" required="required"
+                         placeholder="Enter price per pill"/>
                 </div>
               </div>
             </div>
@@ -77,19 +83,19 @@
               <button class="fl" type="button">Remove</button>
             </div>
             <div class="status">
-              <select required="required">
+              <select name="details.category" [(ngModel)]="product.details.category" required="required">
                 <option value="standart">Standart</option>
                 <option value="premium">Premium</option>
                 <option value="deluxe">Deluxe</option>
               </select>
             </div>
-            <select class="category" required="required">
-              <option></option>
+            <select class="category" name="category" [(ngModel)]="product.category">
+              <option *ngFor="let category of categories">{{category.name}}</option>
             </select>
             <button class="save" type="submit">Save</button>
           </div>
           <div class="text">
-            <textarea required="required"></textarea>
+            <textarea name="description" [(ngModel)]="product.description" required="required"></textarea>
           </div>
         </div>
         <div class="promo">

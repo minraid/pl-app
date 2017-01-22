@@ -20,11 +20,11 @@ export abstract class BaseApiService<T> {
 
     save(item: T): Observable<T> {
       return this.http.post(this.url, item)
-        .map(() => item)
+        .map((response: Response) => response.json() as T)
         .catch(this.handleError);
     }
 
-    remove(id: string): Observable<T> {
+    remove(id: number): Observable<T> {
       return this.http.delete(`${this.url}/${id}`)
         .map(() => null)
         .catch(this.handleError);

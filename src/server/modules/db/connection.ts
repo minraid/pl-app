@@ -10,6 +10,6 @@ export class DBconnection {
 function CreateDefaults() {
   const keys = ['categories', 'orders', 'products', 'userRoles', 'users'];
   Counters.createDefault(keys).then(() => {
-    console.log('created default counters');
+    console.log('DataBase initialized');
   })
 }

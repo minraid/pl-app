@@ -2,6 +2,7 @@ import {IProductDocument, IProductModel} from './interfaces';
 import {BaseRepository} from '../db/baseRepo';
 import { Query } from 'mongoose';
 import { productsModel } from '../db/products/model';
+import { DocumentQuery, Document } from "mongoose";
 
 export class Product extends BaseRepository<IProductDocument> {
   private _productModel: IProductModel;
@@ -11,7 +12,7 @@ export class Product extends BaseRepository<IProductDocument> {
     this._productModel = productModel;
   }
 
-  static get(id: number): Query<IProductDocument> | Query<IProductDocument[]> {
+  static get(id: number): DocumentQuery<IProductDocument, Document>| DocumentQuery<IProductDocument[], Document> {
     const product = new Product(productsModel);
     if (id) {
       return product.findById(id);
@@ -19,9 +20,9 @@ export class Product extends BaseRepository<IProductDocument> {
     return product.retrieve();
   }
 
-  static create(newCategory: IProductDocument): Promise<IProductDocument> {
+  static create(newProduct: IProductDocument): Promise<IProductDocument> {
     const product = new Product(productsModel);
-    return product.create(newCategory);
+    return product.create(newProduct);
   }
 
   static update(id: number, newCategory: IProductDocument): Query<IProductDocument> {

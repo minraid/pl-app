@@ -24,7 +24,7 @@ export const productsSchema = new Schema({
     packaging: String,
     quantity: Number,
     pricePerPill: Number,
-    type: String
+    category: String
   },
   promo: {
     photos: String,
