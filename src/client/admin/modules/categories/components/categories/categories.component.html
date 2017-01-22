@@ -12,7 +12,7 @@
           </div>
         </form>
         <div class="input-group cf" *ngFor="let cat of categories"><span class="fl">{{cat.name}}</span>
-          <!--<button class="fl" (click)="edit(cat)">Edit</button>-->
+          <button class="fl" (click)="onEdit(cat)">Edit</button>
           <button class="fl" (click)="onRemove(cat)">Delete</button>
         </div>
       </div>

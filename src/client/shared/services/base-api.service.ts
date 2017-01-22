@@ -19,6 +19,9 @@ export abstract class BaseApiService<T> {
     }
 
     save(item: T): Observable<T> {
+      if (item['_id']) {
+        return this.update(item);
+      }
       return this.http.post(this.url, item)
         .map((response: Response) => response.json() as T)
         .catch(this.handleError);
@@ -27,6 +30,12 @@ export abstract class BaseApiService<T> {
     remove(id: number): Observable<T> {
       return this.http.delete(`${this.url}/${id}`)
         .map(() => null)
+        .catch(this.handleError);
+    }
+
+    private update(item: T): Observable<T> {
+      return this.http.put(`${this.url}/${item['_id']}`, item)
+        .map((response: Response) => response.json() as T)
         .catch(this.handleError);
     }
 

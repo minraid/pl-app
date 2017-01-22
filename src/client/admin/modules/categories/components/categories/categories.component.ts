@@ -23,10 +23,18 @@ export class CategoriesComponent implements OnInit {
       this.Categories
         .save(this.category)
         .subscribe(category => {
-          this.category = new Category();
-          this.categories.push(category)
+          if (this.category._id) {
+            this.updateItemInList(this.category)
+          } else {
+            this.categories.push(category)
+          }
+          this.category = new Category()
         })
     }
+  }
+
+  onEdit(category: Category) {
+    this.category = Object.assign({}, category);
   }
 
   onRemove({_id}: Category) {
@@ -36,6 +44,16 @@ export class CategoriesComponent implements OnInit {
         const index = this.categories.findIndex(cat => cat._id === _id);
         this.categories.splice(index, 1);
       })
+  }
+
+  private updateItemInList(item: Category) {
+    this.categories = this.categories
+      .map(cat => {
+        if (cat._id === item._id) {
+          cat = item;
+        }
+        return cat;
+      });
   }
 
 }
