@@ -42,7 +42,7 @@
 				th((click)="sort('returnDate')", [ngClass]="{'down' : sorting==='returnDate', 'up' : sorting==='-returnDate'}") Return date
 				th((click)="sort('returnCost')", [ngClass]="{'down' : sorting==='returnCost', 'up' : sorting==='-returnCost'}") Cost of return
 				th((click)="sort('overweightCost')", [ngClass]="{'down' : sorting==='overweightCost', 'up' : sorting==='-overweightCost'}") Overweight
-			tr.cursor(*ngFor="let order of orders", [ngClass]="order.status", [routerLink]="['Order', {id:order._id}]")
+			tr.cursor(*ngFor="let order of neworder", [ngClass]="order.status", [routerLink]="['Order', {id:order._id}]")
 				td {{order._id}}
 				td {{order.date| date:'dd/MM/y'}}
 				td {{order.customer ? order.customer.lastName : ''}}

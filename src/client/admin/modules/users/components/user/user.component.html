@@ -4,22 +4,22 @@
   <div class="content">
     <h1>User</h1>
     <div class="main profile">
-      <form #userForm="ngForm">
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
         <div class="input-group cf">
           <label class="fl">First Name</label>
-          <input class="fl" type="text" required="required"/>
+          <input class="fl" name="firstName" [(ngModel)]="user.firstName" type="text" required="required"/>
         </div>
         <div class="input-group cf">
           <label class="fl">Last Name</label>
-          <input class="fl" type="text" required="required"/>
+          <input class="fl" name="lastName" [(ngModel)]="user.lastName" type="text" required="required"/>
         </div>
         <div class="input-group cf">
           <label class="fl">Nick Name</label>
-          <input class="fl" type="text" required="required"/>
+          <input class="fl" name="nickname" [(ngModel)]="user.nickname" type="text" required="required"/>
         </div>
         <div class="input-group cf">
           <label class="fl">Email</label>
-          <input class="fl" type="text" required="required"/>
+          <input class="fl" name="email" [(ngModel)]="user.email" type="text" required="required"/>
         </div>
         <div class="input-group cf">
           <label class="fl">Birthday</label>
@@ -27,40 +27,40 @@
         </div>
         <div class="input-group cf">
           <label class="fl">Country</label>
-          <select class="fl" required="required">
+          <select class="fl" name="country" [(ngModel)]="user.country" required="required">
             <option></option>
           </select>
         </div>
         <div class="input-group cf">
           <label class="fl">Phone</label>
-          <input class="fl" type="text"/>
+          <input class="fl" name="phone" [(ngModel)]="user.contacts.phone" type="text"/>
         </div>
         <div class="input-group cf">
           <label class="fl">Skype</label>
-          <input class="fl" type="text"/>
+          <input class="fl" name="skype" [(ngModel)]="user.contacts.skype" type="text"/>
         </div>
         <div class="input-group cf">
           <label class="fl">ICQ</label>
-          <input class="fl" type="text"/>
+          <input class="fl" name="icq" [(ngModel)]="user.contacts.icq" type="text"/>
         </div>
         <div class="input-group cf">
           <label class="fl">Jabber</label>
-          <input class="fl" type="text"/>
+          <input class="fl" name="jabber" [(ngModel)]="user.contacts.jabber" type="text"/>
         </div>
         <div class="input-group cf">
           <label class="fl">Deposit</label>
-          <input class="fl" type="text"/>
+          <input class="fl" name="deposit" [(ngModel)]="user.finances.deposit" type="number"/>
         </div>
         <div class="input-group cf">
           <label class="fl">Credit</label>
-          <input class="fl" type="text"/>
+          <input class="fl" name="credit" [(ngModel)]="user.finances.credit" type="number"/>
         </div>
         <div class="input-group cf">
           <label class="fl">Credit Line</label>
           <div class="radio-inputs fl">
-            <input class="fl" type="radio" name="creditLine" id="yes"/>
+            <input class="fl" type="radio" name="creditLine" [(ngModel)]="user.finances.creditLine" [value]="true" id="yes"/>
             <label class="radio fl" for="yes">Yes</label>
-            <input class="fl" type="radio" name="creditLine" id="no"/>
+            <input class="fl" type="radio" name="creditLine" [(ngModel)]="user.finances.creditLine" [value]="false" id="no"/>
             <label class="radio fl" for="no">No</label>
           </div>
         </div>

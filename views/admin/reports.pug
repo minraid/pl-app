@@ -42,7 +42,7 @@
 				th((click)="sort('returnCost')", [ngClass]="{'down' : sorting==='returnCost', 'up' : sorting==='-returnCost'}") Cost of return
 				th((click)="sort('overweightCost')", [ngClass]="{'down' : sorting==='overweightCost', 'up' : sorting==='-overweightCost'}") Overweight
 				th Operations
-			tr(*ngFor="let order of orders", [ngClass]="order.status")
+			tr(*ngFor="let order of neworder", [ngClass]="order.status")
 				td 123
 				td {{order._id}}
 				td {{order.date| date:'dd/MM/y'}}

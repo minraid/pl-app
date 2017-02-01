@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BaseApiService } from "../../../../shared/services/base-api.service";
+import { BaseApiService } from "./base-api.service";
 import { Http } from "@angular/http";
-import { Product } from "../products";
+import { Product } from "../definitions/products";
 
 @Injectable()
 export class ProductsService extends BaseApiService<Product> {

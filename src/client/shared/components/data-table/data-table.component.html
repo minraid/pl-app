@@ -1,8 +1,8 @@
 <table class="report-table">
   <tr>
-    <th *ngFor="let item of items"></th>
+    <th *ngFor="let col of columns">{{col.title}}</th>
   </tr>
-  <tr>
-    <td *ngFor="let item of items"></td>
+  <tr *ngFor="let item of data" (click)="onSelect(item)">
+    <td *ngFor="let col of columns">{{getValue(item, col.key)}}</td>
   </tr>
 </table>

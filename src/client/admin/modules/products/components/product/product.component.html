@@ -90,7 +90,7 @@
               </select>
             </div>
             <select class="category" name="category" [(ngModel)]="product.category">
-              <option *ngFor="let category of categories">{{category.name}}</option>
+              <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
             </select>
             <button class="save" type="submit">Save</button>
           </div>

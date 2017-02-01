@@ -1,0 +1,79 @@
+<div class="container content">
+  <div class="breadcrumbs"><a [routerLink]="['/']">Home</a><span>Order</span></div>
+  <!--<finance></finance>-->
+  <div class="content">
+    <h1>Order</h1>
+    <div class="main order cf">
+      <div class="col-1 fl">
+        <div class="input-group cf">
+          <label class="fl">Partner ID</label><span class="fl">{{order.user._id}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Nick Name</label><span class="fl">{{order.user.nickname}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">First Name</label><span class="fl">{{order.customer.firstName}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Last Name</label><span class="fl">{{order.customer.lastName}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Phone</label><span class="fl">{{order.customer.phone}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Shipping address</label><span class="fl">{{order.address.address}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">City</label><span class="fl">{{order.address.city}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Country</label><span class="fl">{{order.address.country}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Zip/Postal code</label><span class="fl">{{order.address.zip}}</span>
+        </div>
+        <div class="products">
+          <div class="input-group cf" *ngFor="let product of order.products">
+            <label class="fl">Product</label><span class="fl">{{product.title}}</span>
+            <div class="message fl">Price per pill: {{product.pricePerPill}}$</div>
+          </div>
+          <div class="input-group cf">
+            <label class="fl">Quantity</label><span class="fl">{{product.amount}}</span>
+          </div>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Delivery method</label><span class="fl">{{order.expressDelivery ? 'express' : 'standart'}}</span>
+          <div class="message fl">Total amount: {{calculateAmount(order)}}$</div>
+          <div class="message fl">Cost of delivery: {{order.deliveryCost}}</div>
+        </div>
+        <div class="total">Total amount: {{calculateTotal(order)}}$</div>
+      </div>
+      <div class="col-2 fl">
+        <div class="input-group cf">
+          <label class="fl">Shipment date</label><span class="fl">{{order.shipmentDate}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Shipping company</label><span class="fl">{{order.shippingCompany}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Tracking</label><span class="fl">{{order.tracking}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Return</label><span class="fl">{{order.shippingReturn.active}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Return date</label><span class="fl">{{order.shippingReturn.date}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Cost of return</label><span class="fl">{{order.shippingReturn.cost}}$</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Overweight</label><span class="fl">{{order.overweight.active}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Cost of overweight</label><span class="fl">{{order.overweight.cost}}$</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

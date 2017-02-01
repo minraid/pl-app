@@ -1,16 +1,16 @@
-export interface IUserRole {
+export class UserRole {
   title: string;
   role: string;
 }
 
-export interface IUserContacts {
+export class UserContacts {
   phone: number;
   skype: string;
   icq: string;
   jabber: string;
 }
 
-export interface IUserFinances {
+export class UserFinances {
   deposit: number;
   credit: number;
   loanBalance: number;
@@ -18,7 +18,7 @@ export interface IUserFinances {
   loanStart: Date;
 }
 
-export interface IUser {
+export class User {
   _id: number;
   firstName: string;
   lastName: string;
@@ -26,9 +26,9 @@ export interface IUser {
   email: string;
   password: string;
   birthDate: Date;
-  role: IUserRole;
+  // role: UserRole = new UserRole();
   country: string;
-  contacts: IUserContacts;
-  finances: IUserFinances;
+  contacts: UserContacts = new UserContacts();
+  finances: UserFinances = new UserFinances();
   registerDate: Date;
 }

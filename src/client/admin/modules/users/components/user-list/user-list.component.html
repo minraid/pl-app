@@ -2,7 +2,6 @@
   <div class="breadcrumbs"><a href="">Home</a><span>Users</span></div>
   <div class="content">
     <h1>Users</h1>
-    <data-table></data-table>
-    <div *ngFor="let user of users | async">{{user | json}}</div>
+    <data-table [data]="users | async" [columns]="columns" (select)="onSelect($event)"></data-table>
   </div>
 </div>

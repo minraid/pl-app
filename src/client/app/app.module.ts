@@ -28,5 +28,4 @@ import { NewsModule } from './modules/news/news.module';
   declarations: [AppComponent, HomeComponent, FooterComponent, HeaderComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}
