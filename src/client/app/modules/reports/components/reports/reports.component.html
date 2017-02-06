@@ -38,33 +38,6 @@
       </div>
       <button class="fl" (click)="generate()">Generate report</button>
     </div>
-    <table class="report-table">
-      <tr>
-        <th (click)="sort('id')">Order ID</th>
-        <th (click)="sort('date')">Order date</th>
-        <th (click)="sort('customer')">Customer</th>
-        <th (click)="sort('country')">Country</th>
-        <th (click)="sort('amount')">Total amount</th>
-        <th (click)="sort('shipmentDate')">Shipment date</th>
-        <th (click)="sort('tracking')">Tracking</th>
-        <th (click)="sort('return')">Return</th>
-        <th (click)="sort('returnDate')">Return date</th>
-        <th (click)="sort('returnCost')">Cost of return</th>
-        <th (click)="sort('overweightCost')">Overweight</th>
-      </tr>
-      <tr class="cursor">
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-    </table>
+    <data-table [data]="orders | async" [columns]="columns" [(params)]="params" (select)="onSelect($event)"></data-table>
   </div>
 </div>

@@ -36,6 +36,6 @@
       </div>
       <button class="fl">Generate report</button>
     </div>
-    <data-table></data-table>
+    <data-table [data]="orders | async" [columns]="columns" (select)="onSelect($event)"></data-table>
   </div>
 </div>
