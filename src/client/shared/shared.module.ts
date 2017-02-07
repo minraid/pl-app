@@ -7,11 +7,13 @@ import { HttpModule } from "@angular/http";
 import { ProductsService } from "./services/products.service";
 import { OrdersService } from "./services/orders.service";
 import { SelectObjectComponent } from "./components/select-object/select-object.component";
+import { CalendarComponent } from "./components/calendar/calendar.component";
+import { ReportsParametersComponent } from "./components/reports-parameters/reports-parameters.component";
 
 @NgModule({
   imports: [BrowserModule, CommonModule, FormsModule, HttpModule],
-  exports: [BrowserModule, CommonModule, FormsModule, DataTableComponent, SelectObjectComponent],
-  declarations: [DataTableComponent, SelectObjectComponent],
+  exports: [BrowserModule, CommonModule, FormsModule, DataTableComponent, SelectObjectComponent, CalendarComponent, ReportsParametersComponent],
+  declarations: [DataTableComponent, SelectObjectComponent, CalendarComponent, ReportsParametersComponent],
   providers: [ProductsService, OrdersService],
 })
 export class SharedModule {}

@@ -1,0 +1,21 @@
+<div class="cal-input" (click)="open=!open">{{model| date:'dd/MM/y'}}</div>
+<div class="calendar-backdrop" *ngIf="open" (click)="open=!open"></div>
+<div class="calendar" *ngIf="open">
+  <div class="heading cf">
+    <div class="arrow left fl" (click)="previous()"></div>
+    <div class="arrow right fr" (click)="next()"></div>
+    <div class="month">{{date| date:'MMMM y'}}</div>
+  </div>
+  <tr>
+    <th>Sun</th>
+    <th>Mon</th>
+    <th>Tue</th>
+    <th>Wed</th>
+    <th>Thu</th>
+    <th>Fri</th>
+    <th>Sat</th>
+  </tr>
+  <tr *ngFor="let week of month">
+    <td *ngFor="let day of week" (click)="select(day)" [class.disabled]="!day">{{day ? (day | date: 'dd') : ''}}</td>
+  </tr>
+</div>

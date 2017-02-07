@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from "rxjs";
+import { Component, AfterViewInit } from '@angular/core';
 import { OrdersService } from "../../../../../shared/services/orders.service";
 import { Order } from "../../../../../shared/definitions/orders";
 
@@ -7,9 +6,9 @@ import { Order } from "../../../../../shared/definitions/orders";
   selector: 'reports',
   templateUrl: 'reports.component.html'
 })
-export class ReportsComponent implements OnInit {
-  private orders: Observable<any[]>;
-  private searchParams: any = {};
+export class ReportsComponent implements AfterViewInit {
+  private orders: any[];
+  private params: any = {};
   private columns = [{
     key: '_id',
     title: 'Order ID'
@@ -47,24 +46,20 @@ export class ReportsComponent implements OnInit {
     title: 'Overweight'
   }];
 
-  get params() {
-    return this.searchParams;
-  }
-
-  set params(val) {
-    this.searchParams = val;
-    console.log('update');
-  }
-
   constructor(private Orders: OrdersService) {
   }
 
-  ngOnInit() {
-    this.orders = this.Orders.retrieve();
+  ngAfterViewInit() {
+    this.update();
   }
 
   onSelect(order: Order) {
     console.log(order);
+  }
+
+  update() {
+    this.Orders.search(this.params)
+      .subscribe(orders => this.orders = orders);
   }
 
 }

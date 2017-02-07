@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
 })
 export class UserListComponent implements OnInit {
   private users: Observable<User[]>;
+  private params: any = {};
   private columns = [{
     key: 'firstName',
     title: 'First Name'

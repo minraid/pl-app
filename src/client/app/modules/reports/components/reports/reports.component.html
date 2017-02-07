@@ -4,40 +4,7 @@
   <!--<finance></finance>-->
   <div class="content">
     <h1>Reports</h1>
-    <div class="report cf">
-      <div class="dropdown fl">
-        <label>Report period</label>
-      </div>
-      <div class="radio-block fl">
-        <div class="input-group">
-          <input type="radio" id="today" value="today" name="period" (click)="selectPeriod('today')" [checked]="period==='today'"/>
-          <label for="today">Today</label>
-        </div>
-        <div class="input-group">
-          <input type="radio" id="yesterday" value="yesterday" name="period" (click)="selectPeriod('yesterday')" [checked]="period==='yesterday'"/>
-          <label for="yesterday">Yesterday</label>
-        </div>
-      </div>
-      <div class="radio-block fl">
-        <div class="input-group">
-          <input type="radio" id="week" value="week" name="period" (click)="selectPeriod('week')" [checked]="period==='week'"/>
-          <label for="week">Last week</label>
-        </div>
-        <div class="input-group">
-          <input type="radio" id="period" value="period" name="period" (click)="selectPeriod('period')" [checked]="period==='period'"/>
-          <label for="period">Period</label>
-        </div>
-      </div>
-      <div class="calendar fl ml">
-        <label class="fl" for="">From</label>
-        <!--<calendar class="fl" (onSelect)="select($event, 'from')" [date]="from"></calendar>-->
-      </div>
-      <div class="calendar fl">
-        <label class="fl" for="">To</label>
-        <!--<calendar class="fl" (onSelect)="select($event, 'to')" [date]="to"></calendar>-->
-      </div>
-      <button class="fl" (click)="generate()">Generate report</button>
-    </div>
-    <data-table [data]="orders | async" [columns]="columns" [(params)]="params" (select)="onSelect($event)"></data-table>
+    <reports-parameters [(ngModel)]="params" (generate)="update()"></reports-parameters>
+    <data-table [data]="orders" [columns]="columns" [(params)]="params" (select)="onSelect($event)"></data-table>
   </div>
 </div>

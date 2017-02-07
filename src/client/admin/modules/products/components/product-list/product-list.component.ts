@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
 })
 export class ProductListComponent implements OnInit {
     private products: Observable<Product[]>;
+    private params: any = {};
     private columns = [{
       key: 'title',
       title: 'Name'

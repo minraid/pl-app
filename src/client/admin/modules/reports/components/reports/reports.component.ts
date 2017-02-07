@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { ReportsService } from "../../service/reports.service";
-import { Observable } from "rxjs";
+import { Component, AfterViewInit } from '@angular/core';
 import { Order } from "../../../../../shared/definitions/orders";
+import { OrdersService } from "../../../../../shared/services/orders.service";
 
 @Component({
   templateUrl: 'reports.component.html'
 })
-export class ReportsComponent implements OnInit {
-  private orders: Observable<any[]>;
+export class ReportsComponent implements AfterViewInit {
+  private orders: any[];
+  private params: any = {};
   private columns = [{
     key: '',
     title: 'Customer ID'
@@ -45,15 +45,20 @@ export class ReportsComponent implements OnInit {
     title: 'Overweight'
   }];
 
-  constructor(private Reports: ReportsService) {
+  constructor(private Orders: OrdersService) {
   }
 
-  ngOnInit() {
-    this.orders = this.Reports.get({test: 'test', test2: 'test2'});
+  ngAfterViewInit() {
+    this.update();
   }
 
   onSelect(order: Order) {
     console.log(order);
+  }
+
+  update() {
+    this.Orders.search(this.params)
+      .subscribe(orders => this.orders = orders);
   }
 
 }

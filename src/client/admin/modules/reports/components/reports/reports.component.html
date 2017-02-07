@@ -3,39 +3,8 @@
   <div class="content">
     <h1>Reports</h1>
     <div class="report cf">
-      <div class="dropdown fl">
-        <label>Report period</label>
-      </div>
-      <div class="radio-block fl">
-        <div class="input-group">
-          <input type="radio" id="today" value="today" name="period"/>
-          <label for="today">Today</label>
-        </div>
-        <div class="input-group">
-          <input type="radio" id="yesterday" value="yesterday" name="period"/>
-          <label for="yesterday">Yesterday</label>
-        </div>
-      </div>
-      <div class="radio-block fl">
-        <div class="input-group">
-          <input type="radio" id="week" value="week" name="period"/>
-          <label for="week">Last week</label>
-        </div>
-        <div class="input-group">
-          <input type="radio" id="period" value="period" name="period"/>
-          <label for="period">Period</label>
-        </div>
-      </div>
-      <div class="calendar fl ml">
-        <label class="fl" for="">From</label>
-        <!--<calendar class="fl" (onSelect)="select($event, 'from')" [date]="from"></calendar>-->
-      </div>
-      <div class="calendar fl">
-        <label class="fl" for="">To</label>
-        <!--<calendar class="fl" (onSelect)="select($event, 'to')" [date]="to"></calendar>-->
-      </div>
-      <button class="fl">Generate report</button>
+      <reports-parameters [(ngModel)]="params" (generate)="update()"></reports-parameters>
+      <data-table [data]="orders" [columns]="columns" [(params)]="params" (select)="onSelect($event)"></data-table>
     </div>
-    <data-table [data]="orders | async" [columns]="columns" (select)="onSelect($event)"></data-table>
   </div>
 </div>

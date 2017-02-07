@@ -9,8 +9,8 @@ export class DataTableComponent {
   private searchParams: any;
   @Input() data: any[] = [];
   @Input() columns: any[];
-  @Output() select: EventEmitter = new EventEmitter();
-  @Output() paramsChange: EventEmitter = new EventEmitter();
+  @Output() select = new EventEmitter();
+  @Output() paramsChange = new EventEmitter();
 
   @Input()
   get params() {

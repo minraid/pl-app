@@ -2,6 +2,6 @@
   <div class="breadcrumbs"><a href="">Home</a><span>Users</span></div>
   <div class="content">
     <h1>Users</h1>
-    <data-table [data]="users | async" [columns]="columns" (select)="onSelect($event)"></data-table>
+    <data-table [data]="users | async" [columns]="columns" [(params)]="params" (select)="onSelect($event)"></data-table>
   </div>
 </div>
