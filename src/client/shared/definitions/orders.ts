@@ -40,6 +40,6 @@ export class Order {
   status: string;
   overweight: Overweight = new Overweight();
   repeat: boolean;
-  user: User; //TODO = new User()
+  user: User = new User();
   amount: number;
 }

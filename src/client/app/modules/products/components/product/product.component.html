@@ -1,7 +1,7 @@
-
 <div class="container content">
-  <div class="breadcrumbs"><a [routerLink]="['/']">Home</a><a [routerLink]="['/products']">Products</a><span>{{product.title}}</span></div>
-  <!--<finance></finance>-->
+  <div class="breadcrumbs"><a [routerLink]="['/']">Home</a><a [routerLink]="['/products']">Products</a><span>{{product.title}}</span>
+  </div>
+  <finance></finance>
   <div class="content">
     <h1>{{product.title}}</h1>
     <div class="main">
@@ -13,27 +13,27 @@
               <div class="tc">{{product.brand.title}}</div>
             </div>
             <div class="tr">
-              <div class="th">Manufacturer </div>
+              <div class="th">Manufacturer</div>
               <div class="tc">{{product.manufacturer.title}}</div>
             </div>
             <div class="tr">
-              <div class="th">Form </div>
+              <div class="th">Form</div>
               <div class="tc">{{product.details.form}}</div>
             </div>
             <div class="tr">
-              <div class="th">Active substance </div>
+              <div class="th">Active substance</div>
               <div class="tc">{{product.details.activeSubstance}}</div>
             </div>
             <div class="tr">
-              <div class="th">Dosage </div>
+              <div class="th">Dosage</div>
               <div class="tc">{{product.details.dosage}}</div>
             </div>
             <div class="tr">
-              <div class="th">Packaging </div>
+              <div class="th">Packaging</div>
               <div class="tc">{{product.details.packaging}}</div>
             </div>
             <div class="tr">
-              <div class="th">Price per pill </div>
+              <div class="th">Price per pill</div>
               <div class="tc">{{product.details.pricePerPill}}</div>
             </div>
           </div>

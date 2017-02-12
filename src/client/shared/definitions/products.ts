@@ -1,3 +1,4 @@
+import { Category } from "./categories";
 class ProductBrand {
   title: string;
   image: string;
@@ -33,7 +34,7 @@ export class Product {
   image: string;
   brand: ProductBrand = new ProductBrand();
   manufacturer: ProductManufacturer = new ProductManufacturer();
-  category: number;
+  category: Category = new Category();
   details: ProductDetails = new ProductDetails();
   promo: ProductPromo = new ProductPromo();
 }

@@ -14,7 +14,7 @@ export class ProductListComponent implements OnInit {
       key: 'title',
       title: 'Name'
     },{
-      key: 'category',
+      key: 'category.name',
       title: 'Category'
     },{
       key: 'brand.title',

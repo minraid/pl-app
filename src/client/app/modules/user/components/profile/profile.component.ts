@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
 
   submit(form: FormControl) {
     if (form.valid) {
-      this.UserService.update(this.user)
+      this.UserService.updateUser(this.user)
         .subscribe(() => {})
     }
   }

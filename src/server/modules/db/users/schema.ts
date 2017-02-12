@@ -11,7 +11,7 @@ export const usersSchema = new Schema({
   birthDate: Date,
   role: {
     type: Number,
-    ref: 'userRolesSchema'
+    ref: 'UserRoles'
   },
   country: String,
   contacts: {

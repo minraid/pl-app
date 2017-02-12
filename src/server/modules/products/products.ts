@@ -15,9 +15,11 @@ export class Product extends BaseRepository<IProductDocument> {
   static get(id: number): DocumentQuery<IProductDocument, Document>| DocumentQuery<IProductDocument[], Document> {
     const product = new Product(productsModel);
     if (id) {
-      return product.findById(id);
+      return product.findById(id)
+        .populate('category');
     }
-    return product.retrieve();
+    return product.retrieve()
+      .populate('category');
   }
 
   static search(params): DocumentQuery<IProductDocument[], Document> {
@@ -28,7 +30,8 @@ export class Product extends BaseRepository<IProductDocument> {
       sort = {[params.sort]: params.order === 'ASC' ? 1 : -1};
     }
     return product.find(searchParams)
-      .sort(sort);
+      .sort(sort)
+      .populate('category');
   }
 
   static create(newProduct: IProductDocument): Promise<IProductDocument> {

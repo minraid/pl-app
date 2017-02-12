@@ -18,7 +18,11 @@ const appModule = {
       template: conf.path.src('/client/app/index.html'),
       filename: 'index.html',
       inject: true
-    })
+    }),
+    // production code
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: { warnings: false }
+    // })
   ],
   devtool: 'source-map',
   resolve: {

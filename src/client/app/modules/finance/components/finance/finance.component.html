@@ -1,0 +1,24 @@
+<div class="finance cf">
+  <h3 class="fl">Finance</h3>
+  <div class="col fl">
+    <div class="key fl">Deposit:</div>
+    <div class="value fl">${{user.finances.deposit}}</div>
+    <div class="key fl">Credit:</div>
+    <div class="value fl">${{user.finances.credit}}</div>
+    <div class="key fl">Loan balance</div>
+    <div class="value fl">${{user.finances.loanBalance}}</div>
+    <div class="key fl">Status of credit line</div>
+    <div class="value fl"><span class="yes" *ngIf="user.finances.creditLine">YES</span><span class="no" *ngIf="!user.finances.creditLine">NO</span>
+    </div>
+  </div>
+  <div class="col col-2 fl">
+    <div class="key fl">Period of collaboration:</div>
+    <div class="value fl">{{collaboration}} days</div>
+    <div class="key fl">Loan start date:</div>
+    <div class="value fl">{{user.finances.loanStart}}</div>
+    <div class="key fl">Total number of orders:</div>
+    <div class="value fl">{{user.orders && user.orders.length || 0}}</div>
+    <div class="key fl">Total amount of orders:</div>
+    <div class="value fl">${{amount}}</div>
+  </div>
+</div>

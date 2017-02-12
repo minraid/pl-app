@@ -1,16 +1,16 @@
 <div class="container content">
   <div class="breadcrumbs"><a href="">Home</a><span>Order</span></div>
-  <!--<finance></finance>-->
+  <finance></finance>
   <div class="content">
     <h1>Order</h1>
     <div class="main order cf">
       <!--<popup [message]="err || 'Order successfully saved'" *ngIf="showPopup"></popup>-->
       <form class="col-1" #form="ngForm" (ngSubmit)="save(form)" novalidate>
         <div class="input-group cf">
-          <label class="fl">Partner ID</label><span class="fl"><!--{{user._id}}--></span>
+          <label class="fl">Partner ID</label><span class="fl">{{order.user._id}}</span>
         </div>
         <div class="input-group cf">
-          <label class="fl">Nick Name</label><span class="fl"><!--{{user.nickname}}--></span>
+          <label class="fl">Nick Name</label><span class="fl">{{order.user.nickname}}</span>
         </div>
         <div class="input-group cf">
           <label class="fl">First Name</label>

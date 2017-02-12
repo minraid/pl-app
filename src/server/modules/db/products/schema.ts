@@ -15,7 +15,7 @@ export const productsSchema = new Schema({
   },
   category: {
     type: Number,
-    ref: 'categoriesSchema'
+    ref: 'Category'
   },
   details: {
     form: String,

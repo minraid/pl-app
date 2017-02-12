@@ -8,7 +8,7 @@ gulp.task('nodemon', () => {
     ext: 'ts',
     tasks: ['compile'],
     ignore: ['client/']
-  }).on('start', () => {
+  }).on('restart', () => {
     bs.bsClient.reload();
     bs.bsAdmin.reload();
   })

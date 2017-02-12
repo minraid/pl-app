@@ -31,7 +31,8 @@ export class User extends BaseRepository<IUserDocument> {
       sort = {[params.sort]: params.order === 'ASC' ? 1 : -1};
     }
     return user.find(searchParams)
-      .sort(sort);
+      .sort(sort)
+      // .populate('role');
   }
 
   static forgotPassword(email: string): Promise<string> {
@@ -46,9 +47,11 @@ export class User extends BaseRepository<IUserDocument> {
   static get(id: number): DocumentQuery<Document, Document>| DocumentQuery<Document[], Document> {
     const user = new User(usersModel);
     if (id) {
-      return user.findById(id);
+      return user.findById(id)
+        // .populate('role');
     }
-    return user.retrieve();
+    return user.retrieve()
+      // .populate('role');
   }
 
   static update(id: number, newCategory: IUserDocument): Query<IUserDocument> {

@@ -6,7 +6,7 @@ import { User } from "../../../../shared/definitions/users";
 import { Router } from "@angular/router";
 
 @Injectable()
-export class UserService extends BaseApiService {
+export class UserService extends BaseApiService<User> {
   private apiUrl: string = '/api/user';
   private user: User;
 
@@ -19,7 +19,10 @@ export class UserService extends BaseApiService {
       return Observable.of(this.user)
     }
     return this.http.get(this.apiUrl)
-      .map((res: Response) => res.json() as User)
+      .map((res: Response) => {
+        this.user = res.json();
+        return this.user;
+      })
       .catch(err => {
         if (err.status === 401) {
           this.Router.navigate(['/login']);
@@ -28,7 +31,7 @@ export class UserService extends BaseApiService {
       })
   }
 
-  update(user): Observable<any> {
+  updateUser(user): Observable<any> {
     return this.http.post(this.apiUrl, user)
       .map((res: Response) => res.json() as User)
       .catch(this.handleError)
@@ -36,7 +39,12 @@ export class UserService extends BaseApiService {
 
   logout() {
     return this.http.post('/auth/logout', {})
-      .map((res: Response) => res.json())
+      .map((res: Response) => {
+        if (res.json()) {
+          this.user = null;
+          this.Router.navigate(['/login']);
+        }
+      })
       .catch(this.handleError)
   }
 

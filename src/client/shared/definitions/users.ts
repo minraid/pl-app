@@ -1,3 +1,5 @@
+import { Order } from "./orders";
+
 export class UserRole {
   title: string;
   role: string;
@@ -31,4 +33,5 @@ export class User {
   contacts: UserContacts = new UserContacts();
   finances: UserFinances = new UserFinances();
   registerDate: Date;
+  orders: Order[];
 }

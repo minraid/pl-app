@@ -1,10 +1,10 @@
-
 <div class="container content">
   <div class="breadcrumbs"><a href="">Home</a><span>Reports</span></div>
-  <!--<finance></finance>-->
+  <finance></finance>
   <div class="content">
     <h1>Reports</h1>
     <reports-parameters [(ngModel)]="params" (generate)="update()"></reports-parameters>
-    <data-table [data]="orders" [columns]="columns" [(params)]="params" (paramsChange)="update()" (select)="onSelect($event)"></data-table>
+    <data-table [data]="orders" [columns]="columns" [(params)]="params" (paramsChange)="update()"
+                (select)="onSelect($event)"></data-table>
   </div>
 </div>

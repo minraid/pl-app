@@ -16,7 +16,20 @@ const map = {
 
 apiRouter.get('/user', (req: AppRequest, res: Response) => {
   if (req.session['uid']) {
-    User.get(req.session['uid'])
+    Promise.all([
+      User.get(req.session['uid'])
+        .then(user => user._doc),
+      Order.search({user: req.session['uid']})
+        .then(orders => {
+          return {orders}
+        })
+    ]).then(data => {
+      const user = data.reduce((user, item) => {
+        return Object.assign(user, item);
+      }, {});
+      res.json(user);
+    })
+
       .then(data => res.json(data));
   } else {
     res.status(401);

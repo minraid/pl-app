@@ -20,7 +20,7 @@ export const ordersSchema = new Schema({
   },
   products: [{
     type: Number,
-    ref: 'productsSchema',
+    ref: 'Products',
     amount: Number
   }],
   expressDelivery: Boolean,
@@ -56,8 +56,9 @@ export const ordersSchema = new Schema({
   repeat: Boolean,
   user: {
     type: Number,
-    ref: 'user'
-  }
+    ref: 'Users'
+  },
+  amount: Number
 }).pre('save', function (next) {
   Counters.get('orders', this._doc, next);
 });

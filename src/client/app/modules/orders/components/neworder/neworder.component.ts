@@ -4,6 +4,8 @@ import { Order } from "../../../../../shared/definitions/orders";
 import { ProductsService } from "../../../../../shared/services/products.service";
 import { Product } from "../../../../../shared/definitions/products";
 import { OrdersService } from "../../../../../shared/services/orders.service";
+import { UserService } from "../../../user/services/user.service";
+import { User } from "../../../../../shared/definitions/users";
 
 @Component({
   selector: 'orders',
@@ -14,12 +16,18 @@ export class NewOrderComponent implements OnInit {
   private order: Order = new Order();
   private products: Product[];
 
-  constructor(private Products: ProductsService, private Orders: OrdersService) {
+  constructor(private Products: ProductsService,
+              private Orders: OrdersService,
+              private UserService: UserService) {
   }
 
   ngOnInit() {
     this.Products.retrieve()
-      .subscribe((products: Product[]) => this.products = products)
+      .subscribe((products: Product[]) => this.products = products);
+    this.UserService.get()
+      .subscribe((user: User) => {
+        this.order.user = user;
+      })
   }
 
   addProduct() {
@@ -41,7 +49,6 @@ export class NewOrderComponent implements OnInit {
 
   save(form: FormControl) {
     if (form.valid) {
-      console.log(form);
       this.Orders.save(this.order)
         .subscribe(data => console.log(data));
     }
