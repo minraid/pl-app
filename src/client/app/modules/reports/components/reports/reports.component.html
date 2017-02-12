@@ -5,6 +5,6 @@
   <div class="content">
     <h1>Reports</h1>
     <reports-parameters [(ngModel)]="params" (generate)="update()"></reports-parameters>
-    <data-table [data]="orders" [columns]="columns" [(params)]="params" (select)="onSelect($event)"></data-table>
+    <data-table [data]="orders" [columns]="columns" [(params)]="params" (paramsChange)="update()" (select)="onSelect($event)"></data-table>
   </div>
 </div>

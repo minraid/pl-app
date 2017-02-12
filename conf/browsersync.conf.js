@@ -2,9 +2,13 @@ const conf = require('./gulp.conf');
 const historyApiFallback = require('connect-history-api-fallback');
 const proxy = require('proxy-middleware');
 const url = require('url');
-const proxyOptions = url.parse('http://localhost:3000/api');
-proxyOptions.route = '/api';
-const proxyMiddleware = proxy(proxyOptions);
+const apiProxyOptions = url.parse('http://localhost:3000/api');
+apiProxyOptions.route = '/api';
+const apiProxy = proxy(apiProxyOptions);
+
+const authProxyOptions = url.parse('http://localhost:3000/auth');
+authProxyOptions.route = '/auth';
+const authProxy = proxy(authProxyOptions);
 
 module.exports = function (baseDir, port) {
   return {
@@ -16,7 +20,7 @@ module.exports = function (baseDir, port) {
     },
     port,
     ui: false,
-    middleware: [proxyMiddleware, historyApiFallback()],
+    middleware: [apiProxy, authProxy, historyApiFallback()],
     open: false
   }
 };

@@ -1,0 +1,20 @@
+<div class="register">
+  <h1>Login</h1>
+  <form #form="ngForm" (ngSubmit)="submit(form)">
+    <div class="input-group cf">
+      <label class="fl">Email</label>
+      <input class="fl" type="email" [(ngModel)]="user.email" name="email" required="required"/>
+    </div>
+    <div class="input-group cf">
+      <label class="fl">Password</label>
+      <input class="fl" type="password" [(ngModel)]="user.password" name="password" required="required"/>
+    </div>
+    <div class="input-group">
+      <button class="register" type="submit">Login</button>
+      <div class="links">
+        <p><a [routerLink]="['/forgot']">Forgot password?</a></p>
+        <p>Don`t have an account? <a [routerLink]="['/register']">Sign Up!</a></p>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,47 @@
+<div class="container content">
+  <div class="breadcrumbs"><a href="">Home</a><span>Profile</span></div>
+  <!--<finance></finance>-->
+  <div class="content">
+    <h1>Profile</h1>
+    <div class="main profile">
+      <form #form="ngForm" (ngSubmit)="submit(form)">
+        <div class="input-group cf">
+          <label class="fl">First Name</label><span class="fl">{{user.firstName}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Last Name</label><span class="fl">{{user.lastName}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Customer ID</label><span class="fl">{{user._id}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Nick Name</label><span class="fl">{{user.nickname}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Country</label><span class="fl">{{user.country}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Phone</label><span class="fl">{{user.contacts.phone}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Date of registration</label><span class="fl">{{user.registerDate | date: 'dd/MM/y'}}</span>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">Date of Birth</label>
+          <calendar [(ngModel)]="user.birthDate" name="birthDate"></calendar>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">E-mail</label>
+          <input class="fl" type="text" [(ngModel)]="user.email" name="email"/>
+        </div>
+        <div class="input-group cf">
+          <label class="fl">IM</label>
+          <select></select>
+        </div>
+        <div class="input-group">
+          <button type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

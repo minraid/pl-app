@@ -16,8 +16,8 @@ export class OrdersService extends BaseApiService<Order> {
 
   search({from, to, sort, order}): Observable<any[]> {
     const params = {
-      from: this.dateFormatter.transform(from, 'dd/MM/y'),
-      to: this.dateFormatter.transform(to, 'dd/MM/y'),
+      from: this.dateFormatter.transform(from, 'MM/dd/y'),
+      to: this.dateFormatter.transform(to, 'MM/dd/y'),
       sort,
       order
     };

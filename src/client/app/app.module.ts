@@ -11,8 +11,9 @@ import { ProductsModule } from './modules/products/products.module';
 import { OrdersModule } from './modules/orders/orders.module';
 import { ReportsModule } from './modules/reports/reports.module';
 import { PagesModule } from './modules/pages/pages.module';
-import { ProfileModule } from './modules/profile/profile.module';
+import { UserModule } from './modules/user/user.module';
 import { NewsModule } from './modules/news/news.module';
+import { AuthModule } from "./modules/auth/auth.module";
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { NewsModule } from './modules/news/news.module';
     ReportsModule,
     NewsModule,
     PagesModule,
-    ProfileModule
+    UserModule,
+    AuthModule
   ],
   declarations: [AppComponent, HomeComponent, FooterComponent, HeaderComponent],
   bootstrap: [AppComponent]

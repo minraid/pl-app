@@ -7,7 +7,7 @@ import { ActivatedRoute, Params } from "@angular/router";
   templateUrl: 'order.component.html'
 })
 export class OrderComponent implements OnInit {
-  private order: Order = new Order()
+  private order: Order = new Order();
 
   constructor(private Orders: OrdersService, private Route: ActivatedRoute) {
   }

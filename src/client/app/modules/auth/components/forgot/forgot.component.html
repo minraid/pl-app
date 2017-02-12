@@ -1,0 +1,14 @@
+
+<div class="register">
+  <h1>Forgot password</h1>
+  <form #form="ngForm" (ngSubmit)="submit(form)">
+    <div class="input-group cf">
+      <label class="fl">Email</label>
+      <input class="fl" type="email" [(ngModel)]="email" name="email" required="required"/>
+    </div>
+    <div class="input-group">
+      <button class="register" type="submit">Send</button>
+      <div class="links">Already have an account? <a [routerLink]="['/login']">Sign In!</a></div>
+    </div>
+  </form>
+</div>

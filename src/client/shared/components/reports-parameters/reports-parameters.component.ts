@@ -1,6 +1,5 @@
 import { Component, forwardRef, AfterContentInit, Output, EventEmitter } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import { DatePipe } from "@angular/common";
 
 const REPORTS_PARAMS_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -22,7 +21,6 @@ export class ReportsParametersComponent implements AfterContentInit, ControlValu
   };
   private innerModel: any = {};
   private period: string = 'week';
-  private dateFormatter = new DatePipe('en-US');
 
   get model() {
     return this.innerModel;

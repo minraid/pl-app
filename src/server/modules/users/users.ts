@@ -23,6 +23,17 @@ export class User extends BaseRepository<IUserDocument> {
     });
   }
 
+  static search(params): DocumentQuery<IUserDocument[], Document> {
+    const user = new User(usersModel);
+    const searchParams: any = {};
+    let sort = {};
+    if (params.sort && params.order) {
+      sort = {[params.sort]: params.order === 'ASC' ? 1 : -1};
+    }
+    return user.find(searchParams)
+      .sort(sort);
+  }
+
   static forgotPassword(email: string): Promise<string> {
     const user = new User(usersModel);
     return new Promise((resolve, reject) => {

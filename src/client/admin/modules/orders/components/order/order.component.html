@@ -1,0 +1,138 @@
+<div class="container content">
+  <div class="breadcrumbs">
+    <a href="">Home</a>
+    <span>Order</span>
+  </div>
+  <!--<finance [order]="order" [admin]="true"></finance>-->
+  <div class="content">
+    <h1>Order</h1>
+    <div class="main order cf">
+      <!--<popup [message]="'Order successfully saved'" *ngIf="showPopup"></popup>-->
+      <form #form="ngForm" (ngSubmit)="save(form)" novalidate>
+        <div class="col-1 fl">
+          <div class="input-group cf">
+            <label class="fl">Partner ID</label>
+            <!--<span class="fl">{{order.user._id}}</span>-->
+          </div>
+          <div class="input-group cf">
+            <label class="fl">Nick Name</label>
+            <!--<span class="fl">{{order.user.nickname}}</span>-->
+          </div>
+          <div class="input-group cf">
+            <label class="fl">First Name</label>
+            <input class="fl" type="text" [(ngModel)]="order.customer.firstName" name="firstName" required="required"/>
+          </div>
+          <div class="input-group cf">
+            <label class="fl">Last Name</label>
+            <input class="fl" type="text" [(ngModel)]="order.customer.lastName" name="lastName" required="required"/>
+          </div>
+          <div class="input-group cf">
+            <label class="fl">Phone</label>
+            <input class="fl" type="text" [(ngModel)]="order.customer.phone" pattern="[0-9]{10,12}" maxlength="12"
+                   name="phone" required="required"/>
+          </div>
+          <div class="input-group cf">
+            <label class="fl">Shipping address</label>
+            <input class="fl" type="text" [(ngModel)]="order.address.address" name="address" required="required"/>
+          </div>
+          <div class="input-group cf">
+            <label class="fl">City</label>
+            <input class="fl" type="text" [(ngModel)]="order.address.city" name="city" required="required"/>
+          </div>
+          <div class="input-group cf">
+            <label class="fl">Country</label>
+            <select [(ngModel)]="order.address.country" name="country" required="required">
+              <option value="">Select country</option>
+              <option *ngFor="let country of countries" value="{{country}}">{{country}}</option>
+            </select>
+          </div>
+          <div class="input-group cf">
+            <label class="fl">Zip/Postal code</label>
+            <input class="fl" type="text" [(ngModel)]="order.address.zip" pattern="[0-9]{1,6}" maxlength="6"
+                   name="zip" required="required"/>
+          </div>
+          <div class="products" *ngFor="let select of order.products; let i = index">
+            <div class="input-group cf">
+              <label class="fl">Product</label>
+              <div class="admin-select fl">
+                <select class="fl admin-select" name="product"
+                        [(ngModel)]="order.products[i]"
+                        (ngModelChange)="updateAmount()">
+                  <option value="">Select product</option>
+                  <option *ngFor="let product of products" [ngValue]="product" [disabled]="inProducts(product)">{{product.title}}</option>
+                </select>
+              </div>
+              <div class="message fl" *ngIf="order.products[i].details && order.products[i].details.pricePerPill">Price per pill:
+                ${{order.products[i].details.pricePerPill}}
+              </div>
+            </div>
+            <div class="input-group cf">
+              <label class="fl">Quantity</label>
+              <input class="fl" type="number" [(ngModel)]="order.products[i].details.quantity" *ngIf="order.products[i].details" name="quantity"
+                     (ngModelChange)="updateAmount()"/>
+            </div>
+          </div>
+          <div class="input-group cf">
+            <label class="fl">Delivery method</label>
+            <div class="radio-inputs fl">
+              <input class="fl" type="radio" name="del_method" id="standart" [(ngModel)]="order.expressDelivery"
+                     [value]="false"/>
+              <label class="radio fl" for="standart">Standart</label>
+              <input class="fl" type="radio" name="del_method" id="express" [(ngModel)]="order.expressDelivery"
+                     [value]="true"/>
+              <label class="radio fl" for="express">Express</label>
+            </div>
+            <div class="message fl">Total amount: ${{order.amount}}</div>
+            <div class="message fl">Cost of delivery: {{order.expressDelivery ? '$50.00' : '$25.00'}}</div>
+          </div>
+          <div class="total" *ngIf="order.amount">Total amount: ${{order.amount + (order.expressDelivery ? 50 : 25)}}
+          </div>
+        </div>
+        <div class="col-2 fl">
+          <div class="input-group cf">
+            <label class="fl">Shipment date</label>
+            <calendar class="fl" name="shipmentDate" [(ngModel)]="order.shipmentDate"></calendar>
+          </div>
+          <div class="input-group cf">
+            <label class="fl">Shipping company</label>
+            <select></select>
+          </div>
+          <div class="input-group cf">
+            <label class="fl">Tracking</label>
+            <input class="fl" type="text" name="tracking" [(ngModel)]="order.tracking"/>
+          </div>
+          <div class="input-group cf">
+            <label class="fl">Overweight</label>
+            <input class="fl" type="checkbox" name="overweightActive" [(ngModel)]="order.overweight.active"/>
+          </div>
+          <div class="input-group cf" *ngIf="order.overweight.active">
+            <label class="fl">Overweight Cost</label>
+            <input class="fl" type="text" name="overweightCost" [(ngModel)]="order.overweight.cost"/>
+          </div>
+          <div class="input-group cf">
+            <label class="fl">Repeat sending</label>
+            <input class="fl" type="checkbox" name="repeat" [(ngModel)]="order.repeat"/>
+          </div>
+          <div class="input-group cf">
+            <label class="fl">Return</label>
+            <input class="fl" type="radio" name="shippingReturnActive" id="yes" [(ngModel)]="order.shippingReturn.active" [value]="true"/>
+            <label class="radio fl" for="yes">Yes</label>
+            <input class="fl" type="radio" name="shippingReturnActive" id="no" [(ngModel)]="order.shippingReturn.active" [value]="false"/>
+            <label class="radio fl" for="no">No</label>
+          </div>
+          <div class="input-group cf" *ngIf="order.shippingReturn.active">
+            <label class="fl">Return date</label>
+            <calendar class="fl" name="shippingReturnDate" [(ngModel)]="order.shippingReturn.date"></calendar>
+          </div>
+          <div class="input-group cf">
+            <label class="fl">Cost of return</label>
+            <input type="text" name="shippingReturnCost" [(ngModel)]="order.shippingReturn.cost"/>
+          </div>
+          <div class="input-group">
+            <button type="submit">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

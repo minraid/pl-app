@@ -20,6 +20,17 @@ export class Product extends BaseRepository<IProductDocument> {
     return product.retrieve();
   }
 
+  static search(params): DocumentQuery<IProductDocument[], Document> {
+    const product = new Product(productsModel);
+    const searchParams: any = {};
+    let sort = {};
+    if (params.sort && params.order) {
+      sort = {[params.sort]: params.order === 'ASC' ? 1 : -1};
+    }
+    return product.find(searchParams)
+      .sort(sort);
+  }
+
   static create(newProduct: IProductDocument): Promise<IProductDocument> {
     const product = new Product(productsModel);
     return product.create(newProduct);

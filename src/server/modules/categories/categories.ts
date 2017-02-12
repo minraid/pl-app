@@ -1,7 +1,7 @@
-import {ICategoryDocument, ICategoryModel} from './interfaces';
-import {BaseRepository} from '../db/baseRepo';
-import { Query } from 'mongoose';
+import { ICategoryDocument, ICategoryModel } from './interfaces';
+import { BaseRepository } from '../db/baseRepo';
 import { categoriesModel } from '../db/categories/model';
+import { DocumentQuery, Document } from "mongoose";
 
 export class Category extends BaseRepository<ICategoryDocument> {
   private _categoryModel: ICategoryModel;
@@ -11,7 +11,7 @@ export class Category extends BaseRepository<ICategoryDocument> {
     this._categoryModel = categoryModel;
   }
 
-  static get(id: number): Query<ICategoryDocument> | Query<ICategoryDocument[]> {
+  static get(id: number): DocumentQuery<ICategoryDocument, Document> | DocumentQuery<ICategoryDocument[], Document> {
     const category = new Category(categoriesModel);
     if (id) {
       return category.findById(id);
@@ -19,17 +19,28 @@ export class Category extends BaseRepository<ICategoryDocument> {
     return category.retrieve();
   }
 
+  static search(params): DocumentQuery<ICategoryDocument[], Document> {
+    const category = new Category(categoriesModel);
+    const searchParams: any = {};
+    let sort = {};
+    if (params.sort && params.order) {
+      sort = {[params.sort]: params.order === 'ASC' ? 1 : -1};
+    }
+    return category.find(searchParams)
+      .sort(sort);
+  }
+
   static create(newCategory: ICategoryDocument): Promise<ICategoryDocument> {
     const category = new Category(categoriesModel);
     return category.create(newCategory);
   }
 
-  static update(id: number, newCategory: ICategoryDocument): Query<ICategoryDocument> {
+  static update(id: number, newCategory: ICategoryDocument): DocumentQuery<ICategoryDocument, Document> {
     const category = new Category(categoriesModel);
     return category.update(id, newCategory);
   }
 
-  static delete(id: number): Query<void> {
+  static delete(id: number): DocumentQuery<void, Document> {
     const category = new Category(categoriesModel);
     return category.delete(id);
   }

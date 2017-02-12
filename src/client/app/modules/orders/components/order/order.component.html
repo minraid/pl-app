@@ -6,10 +6,10 @@
     <div class="main order cf">
       <div class="col-1 fl">
         <div class="input-group cf">
-          <label class="fl">Partner ID</label><span class="fl">{{order.user._id}}</span>
+          <label class="fl">Partner ID</label><!--<span class="fl">{{order.user._id}}</span>-->
         </div>
         <div class="input-group cf">
-          <label class="fl">Nick Name</label><span class="fl">{{order.user.nickname}}</span>
+          <label class="fl">Nick Name</label><!--<span class="fl">{{order.user.nickname}}</span>-->
         </div>
         <div class="input-group cf">
           <label class="fl">First Name</label><span class="fl">{{order.customer.firstName}}</span>
@@ -35,22 +35,22 @@
         <div class="products">
           <div class="input-group cf" *ngFor="let product of order.products">
             <label class="fl">Product</label><span class="fl">{{product.title}}</span>
-            <div class="message fl">Price per pill: {{product.pricePerPill}}$</div>
+            <!--<div class="message fl">Price per pill: ${{product.details.pricePerPill}}</div>-->
           </div>
           <div class="input-group cf">
-            <label class="fl">Quantity</label><span class="fl">{{product.amount}}</span>
+            <!--<label class="fl">Quantity</label><span class="fl">{{product.details.quantity}}</span>-->
           </div>
         </div>
         <div class="input-group cf">
           <label class="fl">Delivery method</label><span class="fl">{{order.expressDelivery ? 'express' : 'standart'}}</span>
-          <div class="message fl">Total amount: {{calculateAmount(order)}}$</div>
-          <div class="message fl">Cost of delivery: {{order.deliveryCost}}</div>
+          <div class="message fl">Total amount: ${{order.amount}}</div>
+          <div class="message fl">Cost of delivery: ${{order.expressDelivery ? 50 : 25}}</div>
         </div>
-        <div class="total">Total amount: {{calculateTotal(order)}}$</div>
+        <div class="total">Total amount: ${{order.amount + (order.expressDelivery ? 50 : 25)}}</div>
       </div>
       <div class="col-2 fl">
         <div class="input-group cf">
-          <label class="fl">Shipment date</label><span class="fl">{{order.shipmentDate}}</span>
+          <label class="fl">Shipment date</label><span class="fl">{{order.shipmentDate | date:'dd/MM/y'}}</span>
         </div>
         <div class="input-group cf">
           <label class="fl">Shipping company</label><span class="fl">{{order.shippingCompany}}</span>
@@ -61,17 +61,17 @@
         <div class="input-group cf">
           <label class="fl">Return</label><span class="fl">{{order.shippingReturn.active}}</span>
         </div>
-        <div class="input-group cf">
+        <div class="input-group cf" *ngIf="order.shippingReturn.active">
           <label class="fl">Return date</label><span class="fl">{{order.shippingReturn.date}}</span>
         </div>
-        <div class="input-group cf">
-          <label class="fl">Cost of return</label><span class="fl">{{order.shippingReturn.cost}}$</span>
+        <div class="input-group cf" *ngIf="order.shippingReturn.active">
+          <label class="fl">Cost of return</label><span class="fl">${{order.shippingReturn.cost}}</span>
         </div>
         <div class="input-group cf">
           <label class="fl">Overweight</label><span class="fl">{{order.overweight.active}}</span>
         </div>
-        <div class="input-group cf">
-          <label class="fl">Cost of overweight</label><span class="fl">{{order.overweight.cost}}$</span>
+        <div class="input-group cf" *ngIf="order.overweight.active">
+          <label class="fl">Cost of overweight</label><span class="fl">${{order.overweight.cost}}</span>
         </div>
       </div>
     </div>

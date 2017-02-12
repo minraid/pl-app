@@ -5,10 +5,10 @@ const bs = require('./browsersync');
 gulp.task('nodemon', () => {
   nodemon({
     script: 'src/server/app.js',
-    tasks: ['compile'],
     ext: 'ts',
+    tasks: ['compile'],
     ignore: ['client/']
-  }).on('restart', () => {
+  }).on('start', () => {
     bs.bsClient.reload();
     bs.bsAdmin.reload();
   })

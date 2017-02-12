@@ -13,9 +13,10 @@ import { PagesModule } from './modules/pages/pages.module';
 import { NewsModule } from '../app/modules/news/news.module';
 import { CategoriesModule } from "./modules/categories/categories.module";
 import { ReportsModule } from "./modules/reports/reports.module";
+import { OrdersModule } from "./modules/orders/orders.module";
 
 @NgModule({
-  imports: [SharedModule, AdminRoutingModule, ProductsModule, UsersModule, PagesModule, NewsModule, CategoriesModule, ReportsModule],
+  imports: [SharedModule, AdminRoutingModule, ProductsModule, UsersModule, PagesModule, NewsModule, CategoriesModule, ReportsModule, OrdersModule],
   declarations: [AdminComponent, HeaderComponent, FooterComponent],
   providers: [],
   bootstrap: [AdminComponent]

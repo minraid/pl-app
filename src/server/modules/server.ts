@@ -44,7 +44,7 @@ export class Server {
       secret: 'secret',
       resave: false,
       saveUninitialized: true,
-      cookie: {secure: true}
+      cookie: {secure: false} // TODO: secure true on https
     };
     this.App.use(session(sess));
     this.App.use(bodyParser.json());

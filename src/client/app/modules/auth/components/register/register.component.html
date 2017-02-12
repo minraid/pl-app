@@ -1,0 +1,50 @@
+<div class="register">
+  <h1>Registration procedure</h1>
+  <!--<popup [message]="message" *ngIf="showPopup"></popup>-->
+  <form #form="ngForm" (ngSubmit)="submit(form)">
+    <div class="input-group cf">
+      <label class="fl">First Name*</label>
+      <input class="fl" type="text" [(ngModel)]="user.firstName" name="firstName" required="required"/>
+    </div>
+    <div class="input-group cf">
+      <label class="fl">Last Name*</label>
+      <input class="fl" type="text" [(ngModel)]="user.lastName" name="lastName" required="required"/>
+    </div>
+    <div class="input-group cf nick">
+      <label class="fl">Nick Name*</label>
+      <input class="fl" type="text" [(ngModel)]="user.nickname" name="nickname" required="required"/>
+      <button class="check fl" type="button" (click)="checkNick()">Check</button>
+      <div class="message error fl" *ngIf="nickRes === false">Sorry, please try another nick name.</div>
+      <div class="message success fl" *ngIf="nickRes">Ok!</div>
+    </div>
+    <div class="input-group cf">
+      <label class="fl">Email*</label>
+      <input class="fl" type="email" [(ngModel)]="user.email" name="email" required="required"/>
+    </div>
+    <div class="input-group cf">
+      <label class="fl">Country*</label>
+      <select class="fl" [(ngModel)]="user.country" name="country" required="required">
+        <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+      </select>
+    </div>
+    <div class="input-group cf">
+      <label class="fl">Skype</label>
+      <input class="fl" type="text" [(ngModel)]="user.skype" name="skype"/>
+    </div>
+    <div class="input-group cf">
+      <label class="fl">ICQ</label>
+      <input class="fl" type="text" [(ngModel)]="user.icq" name="icq"/>
+    </div>
+    <div class="input-group cf">
+      <label class="fl">Jabber</label>
+      <input class="fl" type="text" [(ngModel)]="user.jabber" name="jabber"/>
+    </div>
+    <div class="input-group cf">
+      <div class="hint fl">* - Marked fields are required.</div>
+      <button class="register fl" type="submit">Register</button>
+    </div>
+    <div class="input-group">
+      <div class="links">Already have an account? <a [routerLink]="['/login']">Login!</a></div>
+    </div>
+  </form>
+</div>

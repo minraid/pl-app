@@ -32,16 +32,19 @@ authRouter.post('/:action', (req: AppRequest, res: Response, next: NextFunction)
   const action = map[req.params['action']];
   const params = getParams(req);
   action(...params).then((data: any) => {
-    res.json(data);
+    if (req.params['action'] === 'login') {
+      req.session['uid'] = data;
+    }
+    res.json(true);
   }, (err: any) => {
-    console.log(err);
-    res.end();
+    res.status(400);
+    res.send(err);
   })
 });
 
 export function getParams({body, session, params}: AppRequest) {
   const map: ParamsMap = {
-    login: [body['email'], body['pass']],
+    login: [body['email'], body['password']],
     signup: [body],
     checknick: [body['nickname']],
     logout: [session],

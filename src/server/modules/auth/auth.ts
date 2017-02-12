@@ -20,8 +20,8 @@ export class Auth {
     return new Promise((resolve, reject) => {
       Auth.getUser().find({email}).then((users: IUserDocument[]) => {
         if (users && users.length) {
-          const [{password}] = users;
-          bcrypt.compare(pass, password).then(res => resolve(res));
+          const [{password, _id}] = users;
+          bcrypt.compare(pass, password).then(res => resolve(_id));
         } else {
           return reject('User not found');
         }

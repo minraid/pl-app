@@ -24,11 +24,11 @@
     <div class="time fl">Europe (Gmt)<span>{{gmt| date:'HH:mm:ss'}}</span></div>
     <div class="finance fl">
       <div class="stats fl">
-        <div class="dep">Deposit: <b>$</b></div>
-        <div class="cred">Credit: <b>$</b></div>
+        <div class="dep">Deposit: <b>${{user.finances.deposit}}</b></div>
+        <div class="cred">Credit: <b>${{user.finances.credit}}</b></div>
       </div>
       <div class="credit fl">Status of credit line:
-        <!--<div [ngClass]="{'yes' : user.creditLine, 'no' : !user.creditLine}">{{user.creditLine ? 'Yes' : 'No'}}</div>-->
+        <div [ngClass]="{'yes' : user.finances.creditLine, 'no' : !user.finances.creditLine}">{{user.finances.creditLine ? 'Yes' : 'No'}}</div>
       </div>
     </div>
     <div class="charity fl">
@@ -36,11 +36,11 @@
       <a href="" class="heart fl">Join us</a>
     </div>
     <div class="profile fl">
-      <div class="block fl"><a (click)="logout()" href="#">Log out</a>
+      <div class="block fl"><a (click)="logout($event)" href="#">Log out</a>
         <div class="id">My ID:</div>
       </div>
-      <div class="block fl"><a></a>
-        <div class="id"></div>
+      <div class="block fl"><a [routerLink]="['/profile']">{{user.nickname}}</a>
+        <div class="id">{{user._id}}</div>
       </div>
     </div>
   </div>

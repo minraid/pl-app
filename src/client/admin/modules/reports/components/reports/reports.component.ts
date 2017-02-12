@@ -1,6 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { Order } from "../../../../../shared/definitions/orders";
 import { OrdersService } from "../../../../../shared/services/orders.service";
+import { Router } from "@angular/router";
 
 @Component({
   templateUrl: 'reports.component.html'
@@ -45,15 +46,16 @@ export class ReportsComponent implements AfterViewInit {
     title: 'Overweight'
   }];
 
-  constructor(private Orders: OrdersService) {
+  constructor(private Orders: OrdersService,
+  private Router: Router) {
   }
 
   ngAfterViewInit() {
     this.update();
   }
 
-  onSelect(order: Order) {
-    console.log(order);
+  onSelect({_id}: Order) {
+    this.Router.navigate(['/orders', _id]);
   }
 
   update() {

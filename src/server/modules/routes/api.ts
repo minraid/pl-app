@@ -4,6 +4,7 @@ import { Order } from '../orders/orders';
 import { Product } from '../products/products';
 import { User } from '../users/users';
 import { AppRequest } from './auth';
+import { IUserDocument } from "../users/interfaces";
 export const apiRouter = Router();
 
 const map = {
@@ -13,9 +14,33 @@ const map = {
   users: User
 };
 
+apiRouter.get('/user', (req: AppRequest, res: Response) => {
+  if (req.session['uid']) {
+    User.get(req.session['uid'])
+      .then(data => res.json(data));
+  } else {
+    res.status(401);
+    res.end();
+  }
+});
+
+apiRouter.post('/user', (req: AppRequest, res: Response) => {
+  if (req.session['uid']) {
+    User.update(req.session['uid'], <IUserDocument>req.body)
+      .then(data => res.json(data));
+  } else {
+    res.status(401);
+    res.end();
+  }
+});
+
 apiRouter.get('/:entity', (req: AppRequest, res: Response) => {
   const model = map[req.params['entity']];
-  model.get().then(data => res.json(data));
+  if (req.query) {
+    model.search(req.query).then(data => res.json(data));
+  } else {
+    model.get().then(data => res.json(data));
+  }
 });
 
 apiRouter.get('/:entity/:id', (req: AppRequest, res: Response) => {
