@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose';
 import {userRolesSchema} from './schema';
+import { IUserRoleModel } from "../../userRoles/interfaces";
 
-export const userRolesModel = mongoose.model('UserRoles', userRolesSchema);
+export const userRolesModel = <IUserRoleModel>mongoose.model('UserRoles', userRolesSchema);

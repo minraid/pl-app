@@ -1,5 +1,6 @@
 import * as mongoose from 'mongoose';
 import { Counters } from '../counters/counters';
+import { UserRole } from "../userRoles/userRole";
 
 export class DBconnection {
   static connect() {
@@ -8,8 +9,12 @@ export class DBconnection {
 }
 
 function CreateDefaults() {
-  const keys = ['categories', 'orders', 'products', 'userRoles', 'users'];
-  Counters.createDefault(keys).then(() => {
+  const counterKeys = ['categories', 'orders', 'products', 'userRoles', 'users'];
+  const roles = [{type: 'ADMIN', title: 'Admin'}, {type: 'CUSTOMER', title: 'Customer'}];
+  Promise.all([
+    Counters.createDefault(counterKeys),
+    UserRole.createDefault(roles)
+  ]).then(() => {
     console.log('DataBase initialized');
   })
 }

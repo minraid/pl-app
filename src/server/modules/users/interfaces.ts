@@ -2,7 +2,7 @@ import {Document, Model} from 'mongoose';
 
 interface IUserRole {
   title: string;
-  role: string;
+  type: string;
 }
 
 interface IUserContacts {

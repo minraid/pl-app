@@ -1,8 +1,9 @@
 import * as bcrypt from 'bcrypt';
-import {usersModel} from "../db/users/model";
-import {User} from "../users/users";
-import {IUserDocument} from "../users/interfaces";
+import { usersModel } from "../db/users/model";
+import { User } from "../users/users";
+import { IUserDocument } from "../users/interfaces";
 import Session = Express.Session;
+import { UserRole } from "../userRoles/userRole";
 
 export interface IAuth {
   login(email: string, pass: string): Promise<boolean>;
@@ -18,31 +19,47 @@ export class Auth {
 
   static login(email: string, pass: string): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      Auth.getUser().find({email}).then((users: IUserDocument[]) => {
-        if (users && users.length) {
-          const [{password, _id}] = users;
-          bcrypt.compare(pass, password).then(res => resolve(_id));
-        } else {
-          return reject('User not found');
-        }
-      });
+      Auth.getUser().find({email})
+        .populate('role')
+        .then((users: IUserDocument[]) => {
+          if (users && users.length) {
+            const [{password, _id, role}] = users;
+            bcrypt.compare(pass, password)
+              .then(res => resolve({_id, role}));
+          } else {
+            return reject('User not found');
+          }
+        });
     })
   }
 
   static signUp(data: IUserDocument): Promise<string> {
     const {email} = data;
+    console.log(email);
     const user = Auth.getUser();
     return new Promise((resolve, reject) => {
-      user.find({email}).then(users => { // TODO: addUserRole
+      user.find({email}).then(users => {
         if (!users.length) {
-          user.create(data).then(password => {
-            console.log(password); // TODO: send mail;
-            resolve(password)
-          }, reject)
+          UserRole.get('CUSTOMER').then(role => {
+            data.role = data.role ? data.role : role;
+            user.create(data).then(password => {
+              console.log(password); // TODO: send mail;
+              resolve(password)
+            }, reject)
+          })
         } else {
           reject('Email has been used');
         }
       }, reject)
+    })
+  }
+
+  static adminSignUp(data: IUserDocument): Promise<string> {
+    return new Promise((resolve, reject) => {
+      UserRole.get('ADMIN').then(role => {
+        data.role = role;
+        Auth.signUp(data).then(resolve, reject);
+      });
     })
   }
 
@@ -60,10 +77,7 @@ export class Auth {
   }
 
   static forgot(email: string): Promise<string> {
-    return User.forgotPassword(email).then(password => {
-      console.log(password); // TODO: send mail;
-      return password;
-    })
+    return User.forgotPassword(email);
   }
 
   private static getUser(): User {

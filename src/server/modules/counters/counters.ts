@@ -35,7 +35,7 @@ export class Counters {
     return this.countersModel.findById(id);
   }
 
-  private create(_id: string):  Promise<ICountersDocument> {
+  private create(_id: string):  Promise<ICountersDocument[]> {
     return this.countersModel.create({_id});
   }
 

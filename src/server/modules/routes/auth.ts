@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import {Auth, IAuth} from '../auth/auth';
 import Session = Express.Session;
+import { Mailer } from "../module/mailer";
 
 export const authRouter = Router();
 
@@ -17,6 +18,7 @@ interface ParamsMap {
   checknick: Array<string>;
   logout: Array<Session>;
   forgot: Array<string>;
+  admin: Array<Object>;
   [key: string]: any;
 }
 
@@ -25,21 +27,33 @@ const map: IAuth = {
   signup: Auth.signUp,
   checknick: Auth.checkNick,
   logout: Auth.logout,
-  forgot: Auth.forgot
+  forgot: Auth.forgot,
+  admin: Auth.adminSignUp,
 };
 
-authRouter.post('/:action', (req: AppRequest, res: Response, next: NextFunction) => {
-  const action = map[req.params['action']];
+authRouter.post('/:action', (req: AppRequest, res: Response) => {
+  const key = req.params['action'];
+  const action = map[key];
   const params = getParams(req);
+  const sendMailActions = ['signup', 'forgot', 'admin'];
+
   action(...params).then((data: any) => {
-    if (req.params['action'] === 'login') {
-      req.session['uid'] = data;
+    if (key === 'login') {
+      const {_id: uid, role: {type: role}} = data;
+      Object.assign(req.session, {uid, role});
+      res.end();
+    } else if (sendMailActions.find(action => action === key)) {
+      Mailer.send(req.body['email'], data).then(() => {
+        res.end();
+      }, () => {
+        res.status(500);
+        res.end();
+      })
     }
-    res.json(true);
   }, (err: any) => {
     res.status(400);
     res.send(err);
-  })
+  });
 });
 
 export function getParams({body, session, params}: AppRequest) {
@@ -48,7 +62,8 @@ export function getParams({body, session, params}: AppRequest) {
     signup: [body],
     checknick: [body['nickname']],
     logout: [session],
-    forgot: [body['email']]
+    forgot: [body['email']],
+    admin: [body]
   };
   return map[params['action']];
 }
