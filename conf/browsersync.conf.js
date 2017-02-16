@@ -14,7 +14,7 @@ module.exports = function (baseDir, port) {
   return {
     server: {
       baseDir: [
-        `${conf.paths.tmp}/${baseDir}`,
+        `${conf.paths.dist}/${baseDir}`,
         conf.paths.src
       ]
     },

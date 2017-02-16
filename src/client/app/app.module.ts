@@ -13,7 +13,6 @@ import { ReportsModule } from './modules/reports/reports.module';
 import { PagesModule } from './modules/pages/pages.module';
 import { UserModule } from './modules/user/user.module';
 import { NewsModule } from './modules/news/news.module';
-import { AuthModule } from "./modules/auth/auth.module";
 
 @NgModule({
   imports: [
@@ -24,8 +23,7 @@ import { AuthModule } from "./modules/auth/auth.module";
     ReportsModule,
     NewsModule,
     PagesModule,
-    UserModule,
-    AuthModule
+    UserModule
   ],
   declarations: [AppComponent, HomeComponent, FooterComponent, HeaderComponent],
   bootstrap: [AppComponent]

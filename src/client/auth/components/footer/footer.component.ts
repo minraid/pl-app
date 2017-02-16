@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'auth-footer',
+  selector: 'footer',
   templateUrl: 'footer.component.html'
 })
-export class AuthFooterComponent implements OnInit {
+export class FooterComponent implements OnInit {
   constructor() {
   }
 

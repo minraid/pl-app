@@ -10,7 +10,7 @@ export class UserService extends BaseApiService<User> {
   private apiUrl: string = '/api/user';
   private user: User;
 
-  constructor(http: Http, private Router: Router) {
+  constructor(http: Http) {
     super(http, 'users');
   }
 
@@ -25,7 +25,7 @@ export class UserService extends BaseApiService<User> {
       })
       .catch(err => {
         if (err.status === 401) {
-          this.Router.navigate(['/login']);
+          location.href = '/';
         }
         return Promise.reject(err.message || err);
       })
@@ -42,7 +42,7 @@ export class UserService extends BaseApiService<User> {
       .map((res: Response) => {
         if (res.json()) {
           this.user = null;
-          this.Router.navigate(['/login']);
+          location.href = '/';
         }
       })
       .catch(this.handleError)

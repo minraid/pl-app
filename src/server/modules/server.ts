@@ -1,10 +1,11 @@
-/// <reference path="../typings/index.d.ts" />
 import * as express from 'express';
 import * as session from 'express-session';
 import * as bodyParser from 'body-parser';
+import * as path from 'path';
 import { DBconnection } from "./db/connection";
 import { authRouter } from './routes/auth';
 import { apiRouter } from './routes/api';
+import { mainRouter } from "./routes/main";
 
 export class Server {
   private App: express.Application;
@@ -16,21 +17,18 @@ export class Server {
   public setRoutes() {
     this.App.use('/auth', authRouter);
     this.App.use('/api', apiRouter);
-    // this.App.get('*', (req: express.Request, res: express.Response) => {
-    //   res.send('Hello world');
-    //   // const category = new categoriesModel({name: 'Test'});
-    //   // category.save((err, data) => {
-    //   //   console.log(err, data);
-    //   // });
-    // });
+
+    this.App.use('/static', express.static(path.join(__dirname, '../../../dist')));
+    this.App.use('/client', express.static(path.join(__dirname, '../../client')));
+
+    this.App.use(mainRouter);
   }
 
   public setup() {
-    this.App.set('view engine', 'pug');
     this.App.set('views', 'views');
     this.App.set('x-powered-by', false);
     this.setMiddleWares();
-    DBconnection.connect();
+    DBconnection.connect()
   }
 
   public startServer() {
@@ -48,9 +46,6 @@ export class Server {
     };
     this.App.use(session(sess));
     this.App.use(bodyParser.json());
-    this.App.use('/node_modules', express.static('../../node_modules'));
-    this.App.use('/app', express.static('../app'));
-    this.App.use(express.static('../app'));
   }
 
   private exceptionHandler(req: express.Request, res: express.Response, next: express.NextFunction) {

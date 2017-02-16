@@ -19,7 +19,7 @@ export class LoginComponent {
           if (!data) {
             return alert('wrong email or password')
           }
-          this.Router.navigate(['/'])
+          location.href = '/'
         })
     }
   }

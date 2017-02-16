@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const nodemon = require('gulp-nodemon');
-const bs = require('./browsersync');
 
 gulp.task('nodemon', () => {
   nodemon({
@@ -8,8 +7,5 @@ gulp.task('nodemon', () => {
     ext: 'ts',
     tasks: ['compile'],
     ignore: ['client/']
-  }).on('restart', () => {
-    bs.bsClient.reload();
-    bs.bsAdmin.reload();
   })
 });

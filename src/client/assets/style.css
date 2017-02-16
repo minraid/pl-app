@@ -478,7 +478,7 @@ header .bottom-line {
 header .bottom-line .calendar {
   background: url("/client/assets/img/calendar.png") top center no-repeat;
   padding-top: 28px;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 14px;
   color: #b24dc2;
   font-weight: bold;
