@@ -4,7 +4,6 @@ const gutil = require('gulp-util');
 const webpack = require('webpack');
 const webpackConf = require('../conf/webpack.conf');
 const gulpConf = require('../conf/gulp.conf');
-const {bsClient, bsAdmin} = require('./browsersync');
 
 gulp.task('webpack', done => {
   webpackWrapper(webpackConf, done);
@@ -26,9 +25,6 @@ function webpackWrapper(conf, done) {
     if (done) {
       done();
       done = null;
-    } else {
-      bsClient.reload();
-      bsAdmin.reload();
     }
   };
 
