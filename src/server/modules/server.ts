@@ -32,8 +32,8 @@ export class Server {
   }
 
   public startServer() {
-    this.App.listen(3000, () => {
-      console.log('Server started on port 3000');
+    this.App.listen(3001, () => {
+      console.log('Server started on port 3001');
     });
   }
 

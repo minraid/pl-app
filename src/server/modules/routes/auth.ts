@@ -37,7 +37,7 @@ authRouter.post('/:action', (req: AppRequest, res: Response) => {
   const params = getParams(req);
   const sendMailActions = ['signup', 'forgot', 'admin'];
 
-  action(...params).then((data: any) => {
+  action(...params).then((data: any) => { // TODO: refactor
     if (key === 'login') {
       const {_id: uid, role: {type: role}} = data;
       Object.assign(req.session, {uid, role});
