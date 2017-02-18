@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from "../../modules/user/services/user.service";
+import { UserService } from "../../../shared/services/user.service";
 import { User } from "../../../shared/definitions/users";
 import { Observable } from "rxjs";
+import { ProductsService } from "../../../shared/services/products.service";
+import { CategoriesService } from "../../../shared/services/categories.service";
+import { Product } from "../../../shared/definitions/products";
+import { Category } from "../../../shared/definitions/categories";
 
 @Component({
   selector: 'header',
@@ -13,14 +17,25 @@ export class HeaderComponent implements OnInit {
   private gmt: Date;
   private pst: Date = new Date();
   private est: Date = new Date();
+  private products: Product[];
+  private categories: Category[];
 
-  constructor(private UserService: UserService) {
+  constructor(private UserService: UserService,
+              private Products: ProductsService,
+              private Categories: CategoriesService) {
   }
 
   ngOnInit() {
     this.UserService.get()
       .subscribe(user => this.user = user);
+
+    this.Products.retrieve()
+      .subscribe(products => this.products = products);
+    this.Categories.retrieve()
+      .subscribe(categories => this.categories = categories);
+
     this.updateTime();
+
     Observable.interval(1000)
       .subscribe(this.updateTime.bind(this))
   }
@@ -29,6 +44,12 @@ export class HeaderComponent implements OnInit {
     e.preventDefault();
     this.UserService.logout()
       .subscribe(res => console.log(res))
+  }
+
+  getCategoryProducts(category: Category): Product[] {
+    if (this.products) {
+      return this.products.filter(({category: {_id}}: Product) => category._id === _id);
+    }
   }
 
   private updateTime() {

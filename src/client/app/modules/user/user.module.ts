@@ -5,13 +5,12 @@ import { ProfileRoutingModule } from './user-routing';
 
 import { ProfileComponent } from './components/profile/profile.component';
 
-import { UserService } from "./services/user.service";
 import { FinanceModule } from "../finance/finance.module";
 
 @NgModule({
     imports: [SharedModule, ProfileRoutingModule, FinanceModule],
     exports: [],
     declarations: [ProfileComponent],
-    providers: [UserService],
+    providers: [],
 })
 export class UserModule { }

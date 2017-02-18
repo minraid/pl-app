@@ -4,7 +4,7 @@ import { Order } from "../../../../../shared/definitions/orders";
 import { ProductsService } from "../../../../../shared/services/products.service";
 import { Product } from "../../../../../shared/definitions/products";
 import { OrdersService } from "../../../../../shared/services/orders.service";
-import { UserService } from "../../../user/services/user.service";
+import { UserService } from "../../../../../shared/services/user.service";
 import { User } from "../../../../../shared/definitions/users";
 
 @Component({

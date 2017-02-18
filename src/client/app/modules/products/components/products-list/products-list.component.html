@@ -1,12 +1,12 @@
 <div class="container content">
   <div class="breadcrumbs"><a routerLink="/">Home</a>
-    <!--<a [routerLink]="['Products']" *ngIf="category._id">Products</a>--><span>{{'Products'}}</span></div>
+    <a [routerLink]="['/products']" *ngIf="category">Products</a><span>{{category ? category.name : 'Products'}}</span></div>
   <finance></finance>
   <div class="content">
-    <h1>{{'Products'}}</h1>
+    <h1>{{category ? category.name : 'Products'}}</h1>
     <div class="products">
       <div class="cf">
-        <div class="col-4" *ngFor="let product of products | async">
+        <div class="col-4" *ngFor="let product of products">
           <a class="product" [routerLink]="['/products', product._id]">
             <img [src]="product.image"/>
             <div class="status">{{product.details.category}}</div>

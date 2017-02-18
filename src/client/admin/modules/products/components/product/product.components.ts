@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from "@angular/router";
 import { ProductsService } from "../../../../../shared/services/products.service";
 import { Product } from "../../../../../shared/definitions/products";
 import { Category } from "../../../../../shared/definitions/categories";
-import { CategoriesService } from "../../../categories/services/categories.service";
+import { CategoriesService } from "../../../../../shared/services/categories.service";
 
 @Component({
   templateUrl: 'product.component.html'

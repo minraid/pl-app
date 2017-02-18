@@ -11,11 +11,13 @@ import { ReportsParametersComponent } from "./components/reports-parameters/repo
 
 import { OrdersService } from "./services/orders.service";
 import { ProductsService } from "./services/products.service";
+import { CategoriesService } from "./services/categories.service";
+import { UserService } from "./services/user.service";
 
 @NgModule({
   imports: [BrowserModule, CommonModule, FormsModule, HttpModule],
   exports: [BrowserModule, CommonModule, FormsModule, DataTableComponent, CalendarComponent, ReportsParametersComponent],
   declarations: [DataTableComponent, CalendarComponent, ReportsParametersComponent],
-  providers: [ProductsService, OrdersService],
+  providers: [ProductsService, OrdersService, CategoriesService, UserService],
 })
 export class SharedModule {}

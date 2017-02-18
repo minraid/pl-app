@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BaseApiService } from "../../../../shared/services/base-api.service";
+import { BaseApiService } from "./base-api.service";
 import { Http, Response } from "@angular/http";
 import { Observable } from "rxjs";
-import { User } from "../../../../shared/definitions/users";
+import { User } from "../definitions/users";
 import { Router } from "@angular/router";
 
 @Injectable()

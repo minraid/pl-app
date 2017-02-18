@@ -11,6 +11,8 @@ const routes: Routes = [
     children: [{
       path: '', component: ProductsListComponent,
     }, {
+      path: 'category/:id', component: ProductsListComponent,
+    }, {
       path: ':id', component: ProductComponent,
     }]
   }

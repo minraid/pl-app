@@ -3,7 +3,16 @@
     <div class="menu fr">
       <ul class="fl">
         <li><a [routerLink]="['/']">Home</a></li>
-        <li><a [routerLink]="['/products']">Products</a></li>
+        <li>
+          <a [routerLink]="['/products']">Products</a>
+          <ul>
+            <li *ngFor="let category of categories"><a [routerLink]="['/products/category', category._id]">{{category.name}}</a>
+              <ul>
+                <li *ngFor="let product of getCategoryProducts(category)"><a [routerLink]="['/products', product._id]">{{product.title}}</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
         <li><a [routerLink]="['/order']">Orders</a></li>
         <li><a [routerLink]="['/reports']">Reports</a></li>
         <li><a [routerLink]="['/news']">News blog</a></li>
