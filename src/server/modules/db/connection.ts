@@ -4,7 +4,7 @@ import { UserRole } from "../userRoles/userRole";
 
 export class DBconnection {
   static connect() {
-    mongoose.connect('mongodb://127.0.0.1/partner', CreateDefaults);
+    mongoose.connect('mongodb://127.0.0.1/partnerbeta', CreateDefaults);
   }
 }
 
