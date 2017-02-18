@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from "rxjs";
 import { Product } from "../../../../../shared/definitions/products";
 import { ProductsService } from "../../../../../shared/services/products.service";
 import { ActivatedRoute, Params } from "@angular/router";
