@@ -49,6 +49,8 @@ authRouter.post('/:action', (req: AppRequest, res: Response) => {
         res.status(500);
         res.end();
       })
+    } else {
+      res.json(data);
     }
   }, (err: any) => {
     res.status(400);
