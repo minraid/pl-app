@@ -41,7 +41,7 @@ authRouter.post('/:action', (req: AppRequest, res: Response) => {
     if (key === 'login') {
       const {_id: uid, role: {type: role}} = data;
       Object.assign(req.session, {uid, role});
-      res.end();
+      res.json(true);
     } else if (sendMailActions.find(action => action === key)) {
       Mailer.send(req.body['email'], data).then(() => {
         res.end();
