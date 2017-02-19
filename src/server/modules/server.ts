@@ -20,6 +20,7 @@ export class Server {
 
     this.App.use('/static', express.static(path.join(__dirname, '../../../dist')));
     this.App.use('/client', express.static(path.join(__dirname, '../../client')));
+    this.App.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
     this.App.use(mainRouter);
   }

@@ -13,11 +13,12 @@ import { OrdersService } from "./services/orders.service";
 import { ProductsService } from "./services/products.service";
 import { CategoriesService } from "./services/categories.service";
 import { UserService } from "./services/user.service";
+import { UploadService } from "./services/upload.service";
 
 @NgModule({
   imports: [BrowserModule, CommonModule, FormsModule, HttpModule],
   exports: [BrowserModule, CommonModule, FormsModule, DataTableComponent, CalendarComponent, ReportsParametersComponent],
   declarations: [DataTableComponent, CalendarComponent, ReportsParametersComponent],
-  providers: [ProductsService, OrdersService, CategoriesService, UserService],
+  providers: [ProductsService, OrdersService, CategoriesService, UserService, UploadService],
 })
 export class SharedModule {}

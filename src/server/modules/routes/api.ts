@@ -5,6 +5,19 @@ import { Product } from '../products/products';
 import { User } from '../users/users';
 import { AppRequest } from './auth';
 import { IUserDocument } from "../users/interfaces";
+import * as multer from 'multer';
+import * as path from 'path';
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.resolve(__dirname, '../../uploads'))
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname.replace(/ /g, '-'))
+  }
+});
+const upload = multer({storage});
+
 export const apiRouter = Router();
 
 const map = {
@@ -35,6 +48,10 @@ apiRouter.get('/user', (req: AppRequest, res: Response) => {
     res.status(401);
     res.end();
   }
+});
+
+apiRouter.post('/upload', upload.single('img'), (req, res) => {
+  res.end(`/uploads/${req.file.filename}`);
 });
 
 apiRouter.post('/user', (req: AppRequest, res: Response) => {

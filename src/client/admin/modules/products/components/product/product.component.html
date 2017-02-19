@@ -7,17 +7,17 @@
       </h1>
       <div class="main">
         <div class="cf">
-          <div class="info fl"><img alt=""/>
-            <div class="upload">
-              <input id="" type="file"/>
-              <label for="">Product Image</label>
+          <div class="info fl"><img [src]="product.image" *ngIf="product.image"/>
+            <div class="upload" *ngIf="!product.image">
+              <input id="productImg" type="file" (change)="upload($event, 'image')"/>
+              <label for="productImg">Product Image</label>
             </div>
-            <div class="cf auto">
+            <div class="cf auto" *ngIf="product.image">
               <div class="upload fl">
-                <input id="productImg" type="file"/>
-                <label for="productImg">Upload new</label>
+                <input id="newProductImg" type="file" (change)="upload($event, 'image')"/>
+                <label for="newProductImg">Upload new</label>
               </div>
-              <button class="fl" type="button">Remove</button>
+              <button class="fl" type="button" (click)="product.image = null">Remove</button>
             </div>
             <div class="table">
               <div class="tr">
@@ -70,17 +70,17 @@
               </div>
             </div>
           </div>
-          <div class="logo fr"><img alt=""/>
-            <div class="upload">
-              <input id="" type="file"/>
-              <label for="">Brand Image</label>
+          <div class="logo fr"><img alt="" [src]="product.brand.image" *ngIf="product.brand.image"/>
+            <div class="upload" *ngIf="!product.brand.image">
+              <input id="brandImg" type="file" (change)="upload($event, 'brand.image')"/>
+              <label for="brandImg">Brand Image</label>
             </div>
-            <div class="cf auto">
+            <div class="cf auto" *ngIf="product.brand.image">
               <div class="upload fl">
-                <input id="brandImg" type="file"/>
-                <label for="brandImg">Upload new</label>
+                <input id="newBrandImg" type="file" (change)="upload($event, 'brand.image')"/>
+                <label for="newBrandImg">Upload new</label>
               </div>
-              <button class="fl" type="button">Remove</button>
+              <button class="fl" type="button" (click)="product.brand.image = null">Remove</button>
             </div>
             <div class="status">
               <select name="details.category" [(ngModel)]="product.details.category" required="required">
@@ -102,34 +102,34 @@
           <h3>Promotional materials</h3>
           <ul>
             <li class="photos">
-              <input id="photos" type="file"/>
+              <input id="photos" type="file" (change)="upload($event, 'promo.photos')"/>
               <label for="photos">Photos</label>
-              <button>Remove</button>
+              <button (click)="product.promo.photos = null" *ngIf="product.promo.photos">Remove</button>
             </li>
             <li class="logos">
-              <input id="logos" type="file"/>
+              <input id="logos" type="file" (change)="upload($event, 'promo.logos')"/>
               <label for="logos">Logos</label>
-              <button>Remove</button>
+              <button (click)="product.promo.logos = null" *ngIf="product.promo.logos">Remove</button>
             </li>
             <li class="leaflets">
-              <input id="leaflets" type="file"/>
+              <input id="leaflets" type="file" (change)="upload($event, 'promo.leaflets')"/>
               <label for="leaflets">Package leaflets</label>
-              <button>Remove</button>
+              <button (click)="product.promo.leaflets = null" *ngIf="product.promo.leaflets">Remove</button>
             </li>
             <li class="miniature">
-              <input id="miniature" type="file"/>
+              <input id="miniature" type="file" (change)="upload($event, 'promo.miniature')"/>
               <label for="miniature">Miniature picture</label>
-              <button>Remove</button>
+              <button (click)="product.promo.miniature = null" *ngIf="product.promo.miniature">Remove</button>
             </li>
             <li class="texts">
-              <input id="texts" type="file"/>
+              <input id="texts" type="file" (change)="upload($event, 'promo.texts')"/>
               <label for="texts">Texts for shop</label>
-              <button>Remove</button>
+              <button (click)="product.promo.texts = null" *ngIf="product.promo.texts">Remove</button>
             </li>
             <li class="other">
-              <input id="other" type="file"/>
+              <input id="other" type="file" (change)="upload($event, 'promo.other')"/>
               <label for="other">Other</label>
-              <button>Remove</button>
+              <button (click)="product.promo.other = null" *ngIf="product.promo.other">Remove</button>
             </li>
           </ul>
         </div>
